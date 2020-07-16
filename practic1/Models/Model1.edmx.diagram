@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="32dcf52e87534315b48f7cc2f35c1989" Name="Diagram1">
+        <EntityTypeShape EntityType="ps2Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Время_уроков" Width="1.5" PointX="5.25" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Классы" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Оценки" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Пользователи" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Предметы" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Расписание" Width="1.5" PointX="7.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Родители" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Ученики" Width="1.5" PointX="7.5" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ps2Model.Учителя" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="ps2Model.урок_в_расписании_по_времени" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.Классное_руководство" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.расписание_класса" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.ученики_в_классе" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.Кто_поставил_оценку" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.Оценки_учеников" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.По_какому_предмету_оценка" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.пользователь_родитель" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.пользователь_учитель" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.предмет_в_расписании" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.родитель_ученик" ManuallyRouted="false" />
+        <AssociationConnector Association="ps2Model.Учителя_и_предметы" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

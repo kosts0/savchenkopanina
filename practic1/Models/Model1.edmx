@@ -1,0 +1,820 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ps2Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Время уроков">
+          <Key>
+            <PropertyRef Name="Номер урока" />
+          </Key>
+          <Property Name="Номер урока" Type="int" Nullable="false" />
+          <Property Name="Начало занятия" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Конец занятия" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Классы">
+          <Key>
+            <PropertyRef Name="ID класса" />
+          </Key>
+          <Property Name="ID класса" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Номер класса" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Год начала обучения" Type="int" Nullable="false" />
+          <Property Name="Год окончания обучения" Type="int" Nullable="false" />
+          <Property Name="Специализация класса" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID классного руководителя" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Оценки">
+          <Key>
+            <PropertyRef Name="Оценка" />
+            <PropertyRef Name="Дата" />
+            <PropertyRef Name="ID ученика" />
+            <PropertyRef Name="id предмета" />
+            <PropertyRef Name="ID учителя" />
+          </Key>
+          <Property Name="Оценка" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="ID ученика" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="id предмета" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID учителя" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Комментарий" Type="char" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Логин" />
+          </Key>
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Хэш пароля" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Соль" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Роль" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Предметы">
+          <Key>
+            <PropertyRef Name="ID предмета" />
+          </Key>
+          <Property Name="ID предмета" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Название предмета" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Расписание">
+          <Key>
+            <PropertyRef Name="День недели" />
+            <PropertyRef Name="Номер урока" />
+            <PropertyRef Name="ID предмета" />
+            <PropertyRef Name="ID класса" />
+          </Key>
+          <Property Name="День недели" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Номер урока" Type="int" Nullable="false" />
+          <Property Name="ID предмета" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID класса" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Родители">
+          <Key>
+            <PropertyRef Name="ID родителя" />
+          </Key>
+          <Property Name="ID родителя" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер телефона" Type="bigint" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ученики">
+          <Key>
+            <PropertyRef Name="ID ученика" />
+          </Key>
+          <Property Name="ID ученика" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер телефона" Type="bigint" />
+          <Property Name="ID родителя" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID класса" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Учителя">
+          <Key>
+            <PropertyRef Name="ID учителя" />
+          </Key>
+          <Property Name="ID учителя" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер телефона" Type="bigint" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Учителя и предметы">
+          <Key>
+            <PropertyRef Name="ID учителя" />
+            <PropertyRef Name="ID предмета" />
+          </Key>
+          <Property Name="ID учителя" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID предмета" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="Классное руководство">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
+          <End Role="Классы" Type="Self.Классы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учителя">
+              <PropertyRef Name="ID учителя" />
+            </Principal>
+            <Dependent Role="Классы">
+              <PropertyRef Name="ID классного руководителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Кто поставил оценку">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учителя">
+              <PropertyRef Name="ID учителя" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="ID учителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Оценки учеников">
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ученики">
+              <PropertyRef Name="ID ученика" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="ID ученика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="По какому предмету оценка">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="ID предмета" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="id предмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="пользователь-родитель">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+          <End Role="Родители" Type="Self.Родители" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Логин" />
+            </Principal>
+            <Dependent Role="Родители">
+              <PropertyRef Name="Логин" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="пользователь-учитель">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Логин" />
+            </Principal>
+            <Dependent Role="Учителя">
+              <PropertyRef Name="Логин" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="предмет в расписании">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="ID предмета" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="ID предмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="расписание класса">
+          <End Role="Классы" Type="Self.Классы" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы">
+              <PropertyRef Name="ID класса" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="ID класса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="родитель-ученик">
+          <End Role="Родители" Type="Self.Родители" Multiplicity="1" />
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Родители">
+              <PropertyRef Name="ID родителя" />
+            </Principal>
+            <Dependent Role="Ученики">
+              <PropertyRef Name="ID родителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="урок в расписании по времени">
+          <End Role="Время уроков" Type="Self.Время уроков" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Время уроков">
+              <PropertyRef Name="Номер урока" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="Номер урока" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ученики в классе">
+          <End Role="Классы" Type="Self.Классы" Multiplicity="0..1" />
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы">
+              <PropertyRef Name="ID класса" />
+            </Principal>
+            <Dependent Role="Ученики">
+              <PropertyRef Name="ID класса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитель-предмет">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
+          <End Role="Учителя и предметы" Type="Self.Учителя и предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учителя">
+              <PropertyRef Name="ID учителя" />
+            </Principal>
+            <Dependent Role="Учителя и предметы">
+              <PropertyRef Name="ID учителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учитель-предмет-2">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
+          <End Role="Учителя и предметы" Type="Self.Учителя и предметы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="ID предмета" />
+            </Principal>
+            <Dependent Role="Учителя и предметы">
+              <PropertyRef Name="ID предмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ps2ModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Время уроков" EntityType="Self.Время уроков" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Классы" EntityType="Self.Классы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оценки" EntityType="Self.Оценки" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Предметы" EntityType="Self.Предметы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Расписание" EntityType="Self.Расписание" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Родители" EntityType="Self.Родители" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ученики" EntityType="Self.Ученики" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учителя" EntityType="Self.Учителя" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Учителя и предметы" EntityType="Self.Учителя и предметы" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Классное руководство" Association="Self.Классное руководство">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Классы" EntitySet="Классы" />
+          </AssociationSet>
+          <AssociationSet Name="Кто поставил оценку" Association="Self.Кто поставил оценку">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="Оценки учеников" Association="Self.Оценки учеников">
+            <End Role="Ученики" EntitySet="Ученики" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="По какому предмету оценка" Association="Self.По какому предмету оценка">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="пользователь-родитель" Association="Self.пользователь-родитель">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Родители" EntitySet="Родители" />
+          </AssociationSet>
+          <AssociationSet Name="пользователь-учитель" Association="Self.пользователь-учитель">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Учителя" EntitySet="Учителя" />
+          </AssociationSet>
+          <AssociationSet Name="предмет в расписании" Association="Self.предмет в расписании">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="расписание класса" Association="Self.расписание класса">
+            <End Role="Классы" EntitySet="Классы" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="родитель-ученик" Association="Self.родитель-ученик">
+            <End Role="Родители" EntitySet="Родители" />
+            <End Role="Ученики" EntitySet="Ученики" />
+          </AssociationSet>
+          <AssociationSet Name="урок в расписании по времени" Association="Self.урок в расписании по времени">
+            <End Role="Время уроков" EntitySet="Время уроков" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="ученики в классе" Association="Self.ученики в классе">
+            <End Role="Классы" EntitySet="Классы" />
+            <End Role="Ученики" EntitySet="Ученики" />
+          </AssociationSet>
+          <AssociationSet Name="Учитель-предмет" Association="Self.Учитель-предмет">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Учителя и предметы" EntitySet="Учителя и предметы" />
+          </AssociationSet>
+          <AssociationSet Name="Учитель-предмет-2" Association="Self.Учитель-предмет-2">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Учителя и предметы" EntitySet="Учителя и предметы" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ps2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Время_уроков">
+          <Key>
+            <PropertyRef Name="Номер_урока" />
+          </Key>
+          <Property Name="Номер_урока" Type="Int32" Nullable="false" />
+          <Property Name="Начало_занятия" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Конец_занятия" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Расписание" Relationship="Self.урок_в_расписании_по_времени" FromRole="Время_уроков" ToRole="Расписание" />
+        </EntityType>
+        <EntityType Name="Классы">
+          <Key>
+            <PropertyRef Name="ID_класса" />
+          </Key>
+          <Property Name="ID_класса" Type="Guid" Nullable="false" />
+          <Property Name="Номер_класса" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Год_начала_обучения" Type="Int32" Nullable="false" />
+          <Property Name="Год_окончания_обучения" Type="Int32" Nullable="false" />
+          <Property Name="Специализация_класса" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_классного_руководителя" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Учителя" Relationship="Self.Классное_руководство" FromRole="Классы" ToRole="Учителя" />
+          <NavigationProperty Name="Расписание" Relationship="Self.расписание_класса" FromRole="Классы" ToRole="Расписание" />
+          <NavigationProperty Name="Ученики" Relationship="Self.ученики_в_классе" FromRole="Классы" ToRole="Ученики" />
+        </EntityType>
+        <EntityType Name="Оценки">
+          <Key>
+            <PropertyRef Name="Оценка" />
+            <PropertyRef Name="Дата" />
+            <PropertyRef Name="ID_ученика" />
+            <PropertyRef Name="id_предмета" />
+            <PropertyRef Name="ID_учителя" />
+          </Key>
+          <Property Name="Оценка" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ID_ученика" Type="Guid" Nullable="false" />
+          <Property Name="id_предмета" Type="Guid" Nullable="false" />
+          <Property Name="ID_учителя" Type="Guid" Nullable="false" />
+          <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Учителя" Relationship="Self.Кто_поставил_оценку" FromRole="Оценки" ToRole="Учителя" />
+          <NavigationProperty Name="Ученики" Relationship="Self.Оценки_учеников" FromRole="Оценки" ToRole="Ученики" />
+          <NavigationProperty Name="Предметы" Relationship="Self.По_какому_предмету_оценка" FromRole="Оценки" ToRole="Предметы" />
+        </EntityType>
+        <EntityType Name="Пользователи">
+          <Key>
+            <PropertyRef Name="Логин" />
+          </Key>
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Хэш_пароля" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Соль" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Роль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Родители" Relationship="Self.пользователь_родитель" FromRole="Пользователи" ToRole="Родители" />
+          <NavigationProperty Name="Учителя" Relationship="Self.пользователь_учитель" FromRole="Пользователи" ToRole="Учителя" />
+        </EntityType>
+        <EntityType Name="Предметы">
+          <Key>
+            <PropertyRef Name="ID_предмета" />
+          </Key>
+          <Property Name="ID_предмета" Type="Guid" Nullable="false" />
+          <Property Name="Название_предмета" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Оценки" Relationship="Self.По_какому_предмету_оценка" FromRole="Предметы" ToRole="Оценки" />
+          <NavigationProperty Name="Расписание" Relationship="Self.предмет_в_расписании" FromRole="Предметы" ToRole="Расписание" />
+          <NavigationProperty Name="Учителя" Relationship="Self.Учителя_и_предметы" FromRole="Предметы" ToRole="Учителя" />
+        </EntityType>
+        <EntityType Name="Расписание">
+          <Key>
+            <PropertyRef Name="День_недели" />
+            <PropertyRef Name="Номер_урока" />
+            <PropertyRef Name="ID_предмета" />
+            <PropertyRef Name="ID_класса" />
+          </Key>
+          <Property Name="День_недели" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Номер_урока" Type="Int32" Nullable="false" />
+          <Property Name="ID_предмета" Type="Guid" Nullable="false" />
+          <Property Name="ID_класса" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Время_уроков" Relationship="Self.урок_в_расписании_по_времени" FromRole="Расписание" ToRole="Время_уроков" />
+          <NavigationProperty Name="Классы" Relationship="Self.расписание_класса" FromRole="Расписание" ToRole="Классы" />
+          <NavigationProperty Name="Предметы" Relationship="Self.предмет_в_расписании" FromRole="Расписание" ToRole="Предметы" />
+        </EntityType>
+        <EntityType Name="Родители">
+          <Key>
+            <PropertyRef Name="ID_родителя" />
+          </Key>
+          <Property Name="ID_родителя" Type="Guid" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_телефона" Type="Int64" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Пользователи" Relationship="Self.пользователь_родитель" FromRole="Родители" ToRole="Пользователи" />
+          <NavigationProperty Name="Ученики" Relationship="Self.родитель_ученик" FromRole="Родители" ToRole="Ученики" />
+        </EntityType>
+        <EntityType Name="Ученики">
+          <Key>
+            <PropertyRef Name="ID_ученика" />
+          </Key>
+          <Property Name="ID_ученика" Type="Guid" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_телефона" Type="Int64" />
+          <Property Name="ID_родителя" Type="Guid" Nullable="false" />
+          <Property Name="ID_класса" Type="Guid" />
+          <NavigationProperty Name="Классы" Relationship="Self.ученики_в_классе" FromRole="Ученики" ToRole="Классы" />
+          <NavigationProperty Name="Оценки" Relationship="Self.Оценки_учеников" FromRole="Ученики" ToRole="Оценки" />
+          <NavigationProperty Name="Родители" Relationship="Self.родитель_ученик" FromRole="Ученики" ToRole="Родители" />
+        </EntityType>
+        <EntityType Name="Учителя">
+          <Key>
+            <PropertyRef Name="ID_учителя" />
+          </Key>
+          <Property Name="ID_учителя" Type="Guid" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_телефона" Type="Int64" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Классы" Relationship="Self.Классное_руководство" FromRole="Учителя" ToRole="Классы" />
+          <NavigationProperty Name="Оценки" Relationship="Self.Кто_поставил_оценку" FromRole="Учителя" ToRole="Оценки" />
+          <NavigationProperty Name="Пользователи" Relationship="Self.пользователь_учитель" FromRole="Учителя" ToRole="Пользователи" />
+          <NavigationProperty Name="Предметы" Relationship="Self.Учителя_и_предметы" FromRole="Учителя" ToRole="Предметы" />
+        </EntityType>
+        <Association Name="урок_в_расписании_по_времени">
+          <End Role="Время_уроков" Type="Self.Время_уроков" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Время_уроков">
+              <PropertyRef Name="Номер_урока" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="Номер_урока" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Классное_руководство">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
+          <End Role="Классы" Type="Self.Классы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учителя">
+              <PropertyRef Name="ID_учителя" />
+            </Principal>
+            <Dependent Role="Классы">
+              <PropertyRef Name="ID_классного_руководителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="расписание_класса">
+          <End Role="Классы" Type="Self.Классы" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы">
+              <PropertyRef Name="ID_класса" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="ID_класса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ученики_в_классе">
+          <End Role="Классы" Type="Self.Классы" Multiplicity="0..1" />
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Классы">
+              <PropertyRef Name="ID_класса" />
+            </Principal>
+            <Dependent Role="Ученики">
+              <PropertyRef Name="ID_класса" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Кто_поставил_оценку">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Учителя">
+              <PropertyRef Name="ID_учителя" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="ID_учителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Оценки_учеников">
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ученики">
+              <PropertyRef Name="ID_ученика" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="ID_ученика" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="По_какому_предмету_оценка">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
+          <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="ID_предмета" />
+            </Principal>
+            <Dependent Role="Оценки">
+              <PropertyRef Name="id_предмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="пользователь_родитель">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+          <End Role="Родители" Type="Self.Родители" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Логин" />
+            </Principal>
+            <Dependent Role="Родители">
+              <PropertyRef Name="Логин" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="пользователь_учитель">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="Логин" />
+            </Principal>
+            <Dependent Role="Учителя">
+              <PropertyRef Name="Логин" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="предмет_в_расписании">
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
+          <End Role="Расписание" Type="Self.Расписание" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предметы">
+              <PropertyRef Name="ID_предмета" />
+            </Principal>
+            <Dependent Role="Расписание">
+              <PropertyRef Name="ID_предмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="родитель_ученик">
+          <End Role="Родители" Type="Self.Родители" Multiplicity="1" />
+          <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Родители">
+              <PropertyRef Name="ID_родителя" />
+            </Principal>
+            <Dependent Role="Ученики">
+              <PropertyRef Name="ID_родителя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Учителя_и_предметы">
+          <End Role="Учителя" Type="Self.Учителя" Multiplicity="*" />
+          <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ps2Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Время_уроков" EntityType="Self.Время_уроков" />
+          <EntitySet Name="Классы" EntityType="Self.Классы" />
+          <EntitySet Name="Оценки" EntityType="Self.Оценки" />
+          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
+          <EntitySet Name="Предметы" EntityType="Self.Предметы" />
+          <EntitySet Name="Расписание" EntityType="Self.Расписание" />
+          <EntitySet Name="Родители" EntityType="Self.Родители" />
+          <EntitySet Name="Ученики" EntityType="Self.Ученики" />
+          <EntitySet Name="Учителя" EntityType="Self.Учителя" />
+          <AssociationSet Name="урок_в_расписании_по_времени" Association="Self.урок_в_расписании_по_времени">
+            <End Role="Время_уроков" EntitySet="Время_уроков" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="Классное_руководство" Association="Self.Классное_руководство">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Классы" EntitySet="Классы" />
+          </AssociationSet>
+          <AssociationSet Name="расписание_класса" Association="Self.расписание_класса">
+            <End Role="Классы" EntitySet="Классы" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="ученики_в_классе" Association="Self.ученики_в_классе">
+            <End Role="Классы" EntitySet="Классы" />
+            <End Role="Ученики" EntitySet="Ученики" />
+          </AssociationSet>
+          <AssociationSet Name="Кто_поставил_оценку" Association="Self.Кто_поставил_оценку">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="Оценки_учеников" Association="Self.Оценки_учеников">
+            <End Role="Ученики" EntitySet="Ученики" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="По_какому_предмету_оценка" Association="Self.По_какому_предмету_оценка">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Оценки" EntitySet="Оценки" />
+          </AssociationSet>
+          <AssociationSet Name="пользователь_родитель" Association="Self.пользователь_родитель">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Родители" EntitySet="Родители" />
+          </AssociationSet>
+          <AssociationSet Name="пользователь_учитель" Association="Self.пользователь_учитель">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="Учителя" EntitySet="Учителя" />
+          </AssociationSet>
+          <AssociationSet Name="предмет_в_расписании" Association="Self.предмет_в_расписании">
+            <End Role="Предметы" EntitySet="Предметы" />
+            <End Role="Расписание" EntitySet="Расписание" />
+          </AssociationSet>
+          <AssociationSet Name="родитель_ученик" Association="Self.родитель_ученик">
+            <End Role="Родители" EntitySet="Родители" />
+            <End Role="Ученики" EntitySet="Ученики" />
+          </AssociationSet>
+          <AssociationSet Name="Учителя_и_предметы" Association="Self.Учителя_и_предметы">
+            <End Role="Учителя" EntitySet="Учителя" />
+            <End Role="Предметы" EntitySet="Предметы" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ps2ModelContainer" CdmEntityContainer="ps2Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ps2Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Время_уроков">
+            <EntityTypeMapping TypeName="ps2Model.Время_уроков">
+              <MappingFragment StoreEntitySet="Время уроков">
+                <ScalarProperty Name="Номер_урока" ColumnName="Номер урока" />
+                <ScalarProperty Name="Начало_занятия" ColumnName="Начало занятия" />
+                <ScalarProperty Name="Конец_занятия" ColumnName="Конец занятия" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Классы">
+            <EntityTypeMapping TypeName="ps2Model.Классы">
+              <MappingFragment StoreEntitySet="Классы">
+                <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+                <ScalarProperty Name="Номер_класса" ColumnName="Номер класса" />
+                <ScalarProperty Name="Год_начала_обучения" ColumnName="Год начала обучения" />
+                <ScalarProperty Name="Год_окончания_обучения" ColumnName="Год окончания обучения" />
+                <ScalarProperty Name="Специализация_класса" ColumnName="Специализация класса" />
+                <ScalarProperty Name="ID_классного_руководителя" ColumnName="ID классного руководителя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оценки">
+            <EntityTypeMapping TypeName="ps2Model.Оценки">
+              <MappingFragment StoreEntitySet="Оценки">
+                <ScalarProperty Name="Оценка" ColumnName="Оценка" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="ID_ученика" ColumnName="ID ученика" />
+                <ScalarProperty Name="id_предмета" ColumnName="id предмета" />
+                <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+                <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пользователи">
+            <EntityTypeMapping TypeName="ps2Model.Пользователи">
+              <MappingFragment StoreEntitySet="Пользователи">
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Хэш_пароля" ColumnName="Хэш пароля" />
+                <ScalarProperty Name="Соль" ColumnName="Соль" />
+                <ScalarProperty Name="Роль" ColumnName="Роль" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Предметы">
+            <EntityTypeMapping TypeName="ps2Model.Предметы">
+              <MappingFragment StoreEntitySet="Предметы">
+                <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+                <ScalarProperty Name="Название_предмета" ColumnName="Название предмета" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Расписание">
+            <EntityTypeMapping TypeName="ps2Model.Расписание">
+              <MappingFragment StoreEntitySet="Расписание">
+                <ScalarProperty Name="День_недели" ColumnName="День недели" />
+                <ScalarProperty Name="Номер_урока" ColumnName="Номер урока" />
+                <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+                <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Родители">
+            <EntityTypeMapping TypeName="ps2Model.Родители">
+              <MappingFragment StoreEntitySet="Родители">
+                <ScalarProperty Name="ID_родителя" ColumnName="ID родителя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ученики">
+            <EntityTypeMapping TypeName="ps2Model.Ученики">
+              <MappingFragment StoreEntitySet="Ученики">
+                <ScalarProperty Name="ID_ученика" ColumnName="ID ученика" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+                <ScalarProperty Name="ID_родителя" ColumnName="ID родителя" />
+                <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Учителя">
+            <EntityTypeMapping TypeName="ps2Model.Учителя">
+              <MappingFragment StoreEntitySet="Учителя">
+                <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Учителя_и_предметы" TypeName="ps2Model.Учителя_и_предметы" StoreEntitySet="Учителя и предметы">
+            <EndProperty Name="Учителя">
+              <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+            </EndProperty>
+            <EndProperty Name="Предметы">
+              <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,64 @@
+﻿@model practic1.Models.Классы
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Классы</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_класса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_класса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Год_начала_обучения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Год_начала_обучения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Год_окончания_обучения)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Год_окончания_обучения)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Специализация_класса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Специализация_класса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Учителя.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Учителя.Фамилия)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

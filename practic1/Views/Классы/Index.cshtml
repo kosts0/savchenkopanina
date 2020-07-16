@@ -1,0 +1,57 @@
+﻿@model IEnumerable<practic1.Models.Классы>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Номер_класса)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Год_начала_обучения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Год_окончания_обучения)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Специализация_класса)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Учителя.Фамилия)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Номер_класса)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Год_начала_обучения)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Год_окончания_обучения)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Специализация_класса)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Учителя.Фамилия)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_класса }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_класса }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_класса })
+        </td>
+    </tr>
+}
+
+</table>

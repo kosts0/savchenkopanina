@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище ps2ModelContainer" CdmEntityContainer="ps2Entities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="ps2Model.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Время_уроков">
+      <EntityTypeMapping TypeName="ps2Model.Время_уроков">
+        <MappingFragment StoreEntitySet="Время уроков">
+          <ScalarProperty Name="Номер_урока" ColumnName="Номер урока" />
+          <ScalarProperty Name="Начало_занятия" ColumnName="Начало занятия" />
+          <ScalarProperty Name="Конец_занятия" ColumnName="Конец занятия" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Классы">
+      <EntityTypeMapping TypeName="ps2Model.Классы">
+        <MappingFragment StoreEntitySet="Классы">
+          <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+          <ScalarProperty Name="Номер_класса" ColumnName="Номер класса" />
+          <ScalarProperty Name="Год_начала_обучения" ColumnName="Год начала обучения" />
+          <ScalarProperty Name="Год_окончания_обучения" ColumnName="Год окончания обучения" />
+          <ScalarProperty Name="Специализация_класса" ColumnName="Специализация класса" />
+          <ScalarProperty Name="ID_классного_руководителя" ColumnName="ID классного руководителя" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Оценки">
+      <EntityTypeMapping TypeName="ps2Model.Оценки">
+        <MappingFragment StoreEntitySet="Оценки">
+          <ScalarProperty Name="Оценка" ColumnName="Оценка" />
+          <ScalarProperty Name="Дата" ColumnName="Дата" />
+          <ScalarProperty Name="ID_ученика" ColumnName="ID ученика" />
+          <ScalarProperty Name="id_предмета" ColumnName="id предмета" />
+          <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+          <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Пользователи">
+      <EntityTypeMapping TypeName="ps2Model.Пользователи">
+        <MappingFragment StoreEntitySet="Пользователи">
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+          <ScalarProperty Name="Хэш_пароля" ColumnName="Хэш пароля" />
+          <ScalarProperty Name="Соль" ColumnName="Соль" />
+          <ScalarProperty Name="Роль" ColumnName="Роль" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Предметы">
+      <EntityTypeMapping TypeName="ps2Model.Предметы">
+        <MappingFragment StoreEntitySet="Предметы">
+          <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+          <ScalarProperty Name="Название_предмета" ColumnName="Название предмета" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Расписание">
+      <EntityTypeMapping TypeName="ps2Model.Расписание">
+        <MappingFragment StoreEntitySet="Расписание">
+          <ScalarProperty Name="День_недели" ColumnName="День недели" />
+          <ScalarProperty Name="Номер_урока" ColumnName="Номер урока" />
+          <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+          <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Родители">
+      <EntityTypeMapping TypeName="ps2Model.Родители">
+        <MappingFragment StoreEntitySet="Родители">
+          <ScalarProperty Name="ID_родителя" ColumnName="ID родителя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ученики">
+      <EntityTypeMapping TypeName="ps2Model.Ученики">
+        <MappingFragment StoreEntitySet="Ученики">
+          <ScalarProperty Name="ID_ученика" ColumnName="ID ученика" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+          <ScalarProperty Name="ID_родителя" ColumnName="ID родителя" />
+          <ScalarProperty Name="ID_класса" ColumnName="ID класса" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Учителя">
+      <EntityTypeMapping TypeName="ps2Model.Учителя">
+        <MappingFragment StoreEntitySet="Учителя">
+          <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+          <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+          <ScalarProperty Name="Имя" ColumnName="Имя" />
+          <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+          <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
+          <ScalarProperty Name="Логин" ColumnName="Логин" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Учителя_и_предметы" TypeName="ps2Model.Учителя_и_предметы" StoreEntitySet="Учителя и предметы">
+      <EndProperty Name="Учителя">
+        <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
+      </EndProperty>
+      <EndProperty Name="Предметы">
+        <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
