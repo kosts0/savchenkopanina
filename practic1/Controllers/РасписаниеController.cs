@@ -15,7 +15,7 @@ namespace practic1.Controllers
         private ps2Entities db = new ps2Entities();
 
         // GET: Расписание
-        public ActionResult Index(Guid clas,string this_day,int x)
+        public Chesk Index(Guid clas,string this_day,int? x)
         {
             Chesk расписаниеModel = new Chesk();
             var расписание = db.Расписание.Include(р => р.Время_уроков).Include(р => р.Классы).Include(р => р.Предметы).Where(p => p.ID_класса == clas).Where(p => p.День_недели == this_day);
@@ -51,9 +51,46 @@ namespace practic1.Controllers
             }
             
 
-            return View(расписаниеModel);
+            return расписаниеModel;
         }
 
+
+        public ActionResult Index2(Guid clas,int x, Guid student)
+        {
+            Неделя_оценкиcs week = new Неделя_оценкиcs();
+            System.DateTime date = DateTime.Now;
+            int k = 0;
+            while(date.DayOfWeek.ToString() != "Monday")
+            {
+                date = DateTime.Now.AddDays(-1*k);
+                k++;
+
+            }
+
+            DateTime l = date;
+            k = 0;
+            while(date.DayOfWeek.ToString() != "Sunday")
+            {
+                Chesk chesk = Index(clas, date.DayOfWeek.ToString(),0);
+                week.Days.Add(date);
+                week.расписание_недели.Add(chesk);
+                date = DateTime.Now.AddDays(-1 * k);
+                k++;
+            }
+            DateTime r = date;
+            week.ID_класса = clas;
+            week.номер_класса = db.Классы.Where(p => p.ID_класса == clas).FirstOrDefault().Номер_класса;
+            var оценки = db.Оценки.Where(p => p.ID_ученика == student);
+            foreach(var item in оценки)
+            {
+                if(item.Дата >=l && item.Дата <= r)
+                {
+                    week.Оценки.Add(item);
+                }
+            }
+            return View(week);
+        }
+        
         // GET: Расписание/Details/5
         public ActionResult Details(string id)
         {

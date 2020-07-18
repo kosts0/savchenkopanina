@@ -1,0 +1,16 @@
+﻿@model IEnumerable<practic1.Models.Ученики>
+@{ 
+    ViewBag.Title = "Journal";
+}
+
+<h2>Journal</h2>
+
+
+<p>@this.Model.FirstOrDefault().Классы.Номер_класса</p>
+
+@foreach(var item in this.Model)
+{
+    @Html.ActionLink(item.Фамилия+item.Имя, "Journal2",new {id = item.Классы.ID_класса,studen = item.ID_ученика})
+    <p></p>
+}
+

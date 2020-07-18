@@ -13,6 +13,17 @@ namespace practic1.Controllers
     public class КлассыController : Controller
     {
         private ps2Entities db = new ps2Entities();
+        public ActionResult Journal(Guid id) 
+        {
+            var ученики = db.Ученики.Where(p => p.ID_класса == id);
+            
+            return View(ученики.ToList());
+        }
+
+        public ActionResult Journal2(Guid id, Guid studen)
+        {
+            return RedirectToAction("Index2", "Расписание", new { clas = id,x = 0,student = studen });
+        }
 
         public ActionResult Clases(Guid id,DayOfWeek day,int y)
         {

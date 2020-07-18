@@ -1,0 +1,20 @@
+﻿@model practic1.Models.Оцнекикласса
+@{
+    ViewBag.Title = "Журнал_оценок_за_предмет";
+}
+
+<h2>Журнал_оценок_за_предмет</h2>
+
+
+
+<p>@this.Model.номер_класса</p>
+
+@foreach (var item in Model.Ученики)
+{
+    <p>@item.Имя @item.Фамилия</p>
+}
+
+@foreach (var item in Model.Оценки)
+{
+    <p>@item.Оценка</p>
+}

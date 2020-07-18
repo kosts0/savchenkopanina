@@ -1,0 +1,23 @@
+﻿@model practic1.Models.Неделя_оценкиcs
+@{
+    ViewBag.Title = "Index2";
+}
+
+<h2>Index2</h2>
+
+
+
+@foreach (var item in Model.Days)
+{
+    <p>@item.Date</p>
+}
+
+
+@foreach (var item in Model.расписание_недели)
+{
+    <p>@item.День_недели</p>
+    foreach(var item2 in item.Предметы)
+    {
+    <p>@item2.Номер_урока @item2.Название_предмета</p>
+    }
+}

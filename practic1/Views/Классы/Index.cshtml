@@ -50,7 +50,7 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID_класса }) |
             @*@Html.ActionLink("Расписание","Index", "Расписание",new {day = "Вторник",clas=item.ID_класса }) |*@
             @Html.ActionLink("Расписание", "Clases",new { id = item.ID_класса, day = DateTime.Now.DayOfWeek, y=0})
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_класса })
+            @Html.ActionLink("Журнал", "Journal", new { id=item.ID_класса })
         </td>
     </tr>
 }

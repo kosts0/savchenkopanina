@@ -132,6 +132,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\КлассыController.cs" />
+    <Compile Include="Controllers\ОценкиController.cs" />
     <Compile Include="Controllers\РасписаниеController.cs" />
     <Compile Include="Controllers\УченикиController.cs" />
     <Compile Include="Global.asax.cs">
@@ -163,9 +164,11 @@
     <Compile Include="Models\Классы.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Неделя_оценкиcs.cs" />
     <Compile Include="Models\Оценки.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Оцнекикласса.cs" />
     <Compile Include="Models\Пользователи.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -173,6 +176,7 @@
     <Compile Include="Models\Предметы.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Предметыукласса.cs" />
     <Compile Include="Models\Расписание.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -257,6 +261,9 @@
     <Content Include="Views\Расписание\Details.cshtml" />
     <Content Include="Views\Расписание\Edit.cshtml" />
     <Content Include="Views\Расписание\Index.cshtml" />
+    <Content Include="Views\Классы\Journal.cshtml" />
+    <Content Include="Views\Оценки\Index.cshtml" />
+    <Content Include="Views\Расписание\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,6 +19,6 @@ namespace practic1.Models
         public System.Guid ID_класса { get; set; }
         public string Номер_класса { get; set; }
         public virtual ICollection<Предметврасписании> Предметы { get; set; }
-        public int x;
+        public int? x;
     }
 }
