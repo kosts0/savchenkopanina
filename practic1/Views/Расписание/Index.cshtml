@@ -1,0 +1,86 @@
+﻿@model practic1.Models.Chesk
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@Html.ActionLink("Предыдущий день", "Index", new { clas = Model.ID_класса, this_day = DateTimeOffset.Now.AddDays(Model.x - 1).DayOfWeek.ToString(), x = Model.x - 1 })
+@Html.ActionLink("Следующий день", "Index", new { clas = Model.ID_класса, this_day = DateTimeOffset.Now.AddDays(Model.x + 1).DayOfWeek.ToString(), x = Model.x + 1 })
+@*@if (ViewBag.day == "Monday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Tuesday" })
+    }
+    else if (ViewBag.day == "Tuesday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Wednesday" })
+    }
+    else if (ViewBag.day == "Wednesday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Thursday" })
+    }
+    else if (ViewBag.day == "Thursday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Friday" })
+    }
+    else if (ViewBag.day == "Friday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Saturday" })
+    }
+    else if (ViewBag.day == "Saturday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Sunday" })
+    }
+    else if (ViewBag.day == "Sunday")
+    {
+        @Html.ActionLink("Следующий день", "Index", new { clas = Model.FirstOrDefault().ID_класса, this_day = "Monday" })
+    }*@
+
+<p>@this.Model.Номер_класса</p>
+<p>@this.Model.День_недели</p>
+<p>@DateTime.Now.AddDays(this.Model.x)</p>
+@foreach (var item in Model.Предметы)
+{
+    <p>@item.Номер_урока   @*@item.Начало_занятия  @item.Конец_занятия*@  @item.Название_предмета</p>
+}
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Время_уроков.Номер_урока)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Классы.Номер_класса)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Предметы.Название_предмета)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Время_уроков.Номер_урока)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Классы.Номер_класса)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Предметы.Название_предмета)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+                </td>
+            </tr>
+        }
+
+    </table>*@

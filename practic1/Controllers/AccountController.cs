@@ -36,7 +36,20 @@ namespace practic1.Controllers
                     if (user.Хэш_пароля == model.Password)
                     {
                         FormsAuthentication.SetAuthCookie(model.Name, true);
-                        return RedirectToAction("Index", "Home");
+                        if(user.Роль == "Учитель")
+                        {
+                            return RedirectToAction("Index", "Классы");
+                        }
+                        else if (user.Роль == "Родитель")
+                        {
+                            Console.WriteLine("fewerwerwr");
+                            return RedirectToAction("Index", "Ученики");
+                        }
+                        else
+                        {
+                            return RedirectToAction("About", "Home");
+                        }
+                        
                     }
                     else { ModelState.AddModelError("", "Пользователя с таким логином и паролем нет"); }
                 }

@@ -8,10 +8,17 @@ using System.Web.Security;
 
 namespace practic1.Models
 {
-    [Authorize]
+
     public class Chesk
     {
-        string [] s = Roles.GetRolesForUser();
-
+        public Chesk()
+        {
+            this.Предметы = new List<Предметврасписании>();
+        }
+        public string День_недели { get; set; }
+        public System.Guid ID_класса { get; set; }
+        public string Номер_класса { get; set; }
+        public virtual ICollection<Предметврасписании> Предметы { get; set; }
+        public int x;
     }
 }

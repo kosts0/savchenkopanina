@@ -1,0 +1,66 @@
+﻿@model practic1.Models.Ученики
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Ученики</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Фамилия)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Имя)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Имя)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Отчество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Отчество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Номер_телефона)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Номер_телефона)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Классы.Номер_класса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Классы.Номер_класса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Родители.Фамилия)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Родители.Фамилия)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID_ученика }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

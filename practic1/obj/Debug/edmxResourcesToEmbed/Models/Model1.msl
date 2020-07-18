@@ -110,13 +110,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="Учителя_и_предметы" TypeName="ps2Model.Учителя_и_предметы" StoreEntitySet="Учителя и предметы">
-      <EndProperty Name="Учителя">
-        <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
-      </EndProperty>
-      <EndProperty Name="Предметы">
-        <ScalarProperty Name="ID_предмета" ColumnName="ID предмета" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

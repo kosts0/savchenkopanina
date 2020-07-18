@@ -1,0 +1,42 @@
+﻿@model practic1.Models.Расписание
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Расписание</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Время_уроков.Номер_урока)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Время_уроков.Номер_урока)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Классы.Номер_класса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Классы.Номер_класса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Предметы.Название_предмета)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Предметы.Название_предмета)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -70,13 +70,11 @@
     <Property Name="Название_предмета" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Оценки" Relationship="Self.По_какому_предмету_оценка" FromRole="Предметы" ToRole="Оценки" />
     <NavigationProperty Name="Расписание" Relationship="Self.предмет_в_расписании" FromRole="Предметы" ToRole="Расписание" />
-    <NavigationProperty Name="Учителя" Relationship="Self.Учителя_и_предметы" FromRole="Предметы" ToRole="Учителя" />
   </EntityType>
   <EntityType Name="Расписание">
     <Key>
       <PropertyRef Name="День_недели" />
       <PropertyRef Name="Номер_урока" />
-      <PropertyRef Name="ID_предмета" />
       <PropertyRef Name="ID_класса" />
     </Key>
     <Property Name="День_недели" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
@@ -128,7 +126,6 @@
     <NavigationProperty Name="Классы" Relationship="Self.Классное_руководство" FromRole="Учителя" ToRole="Классы" />
     <NavigationProperty Name="Оценки" Relationship="Self.Кто_поставил_оценку" FromRole="Учителя" ToRole="Оценки" />
     <NavigationProperty Name="Пользователи" Relationship="Self.пользователь_учитель" FromRole="Учителя" ToRole="Пользователи" />
-    <NavigationProperty Name="Предметы" Relationship="Self.Учителя_и_предметы" FromRole="Учителя" ToRole="Предметы" />
   </EntityType>
   <Association Name="урок_в_расписании_по_времени">
     <End Role="Время_уроков" Type="Self.Время_уроков" Multiplicity="1" />
@@ -262,10 +259,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Учителя_и_предметы">
-    <End Role="Учителя" Type="Self.Учителя" Multiplicity="*" />
-    <End Role="Предметы" Type="Self.Предметы" Multiplicity="*" />
-  </Association>
   <EntityContainer Name="ps2Entities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
     <EntitySet Name="Время_уроков" EntityType="Self.Время_уроков" />
@@ -320,10 +313,6 @@
     <AssociationSet Name="родитель_ученик" Association="Self.родитель_ученик">
       <End Role="Родители" EntitySet="Родители" />
       <End Role="Ученики" EntitySet="Ученики" />
-    </AssociationSet>
-    <AssociationSet Name="Учителя_и_предметы" Association="Self.Учителя_и_предметы">
-      <End Role="Учителя" EntitySet="Учителя" />
-      <End Role="Предметы" EntitySet="Предметы" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

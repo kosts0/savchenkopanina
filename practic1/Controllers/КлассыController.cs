@@ -14,6 +14,13 @@ namespace practic1.Controllers
     {
         private ps2Entities db = new ps2Entities();
 
+        public ActionResult Clases(Guid id,DayOfWeek day,int y)
+        {
+            
+            return RedirectToAction("Index", "Расписание", new {clas = id, this_day = day.ToString(), x = y});
+        }
+
+
         // GET: Классы
         [Authorize(Roles = "Учитель")]
         public ActionResult Index()

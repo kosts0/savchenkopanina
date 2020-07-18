@@ -64,7 +64,6 @@
     <Key>
       <PropertyRef Name="День недели" />
       <PropertyRef Name="Номер урока" />
-      <PropertyRef Name="ID предмета" />
       <PropertyRef Name="ID класса" />
     </Key>
     <Property Name="День недели" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -105,14 +104,6 @@
     <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
     <Property Name="Номер телефона" Type="bigint" />
     <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Учителя и предметы">
-    <Key>
-      <PropertyRef Name="ID учителя" />
-      <PropertyRef Name="ID предмета" />
-    </Key>
-    <Property Name="ID учителя" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ID предмета" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <Association Name="Классное руководство">
     <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
@@ -246,30 +237,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="Учитель-предмет">
-    <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
-    <End Role="Учителя и предметы" Type="Self.Учителя и предметы" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Учителя">
-        <PropertyRef Name="ID учителя" />
-      </Principal>
-      <Dependent Role="Учителя и предметы">
-        <PropertyRef Name="ID учителя" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Учитель-предмет-2">
-    <End Role="Предметы" Type="Self.Предметы" Multiplicity="1" />
-    <End Role="Учителя и предметы" Type="Self.Учителя и предметы" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Предметы">
-        <PropertyRef Name="ID предмета" />
-      </Principal>
-      <Dependent Role="Учителя и предметы">
-        <PropertyRef Name="ID предмета" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="Хранилище ps2ModelContainer">
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Время уроков" EntityType="Self.Время уроков" Schema="dbo" store:Type="Tables" />
@@ -281,7 +248,6 @@
     <EntitySet Name="Родители" EntityType="Self.Родители" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ученики" EntityType="Self.Ученики" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Учителя" EntityType="Self.Учителя" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Учителя и предметы" EntityType="Self.Учителя и предметы" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Классное руководство" Association="Self.Классное руководство">
       <End Role="Учителя" EntitySet="Учителя" />
       <End Role="Классы" EntitySet="Классы" />
@@ -325,14 +291,6 @@
     <AssociationSet Name="ученики в классе" Association="Self.ученики в классе">
       <End Role="Классы" EntitySet="Классы" />
       <End Role="Ученики" EntitySet="Ученики" />
-    </AssociationSet>
-    <AssociationSet Name="Учитель-предмет" Association="Self.Учитель-предмет">
-      <End Role="Учителя" EntitySet="Учителя" />
-      <End Role="Учителя и предметы" EntitySet="Учителя и предметы" />
-    </AssociationSet>
-    <AssociationSet Name="Учитель-предмет-2" Association="Self.Учитель-предмет-2">
-      <End Role="Предметы" EntitySet="Предметы" />
-      <End Role="Учителя и предметы" EntitySet="Учителя и предметы" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
