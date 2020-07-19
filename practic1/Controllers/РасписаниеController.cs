@@ -68,14 +68,13 @@ namespace practic1.Controllers
             }
 
             DateTime l = date;
-            k = 0;
             while(date.DayOfWeek.ToString() != "Sunday")
             {
                 Chesk chesk = Index(clas, date.DayOfWeek.ToString(),0);
                 week.Days.Add(date);
                 week.расписание_недели.Add(chesk);
                 date = DateTime.Now.AddDays(-1 * k);
-                k++;
+                k--;
             }
             DateTime r = date;
             week.ID_класса = clas;
