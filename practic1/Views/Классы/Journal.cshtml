@@ -1,4 +1,4 @@
-﻿@model IEnumerable<practic1.Models.Ученики>
+﻿@model practic1.Models.Предметыукласса
 @{ 
     ViewBag.Title = "Journal";
 }
@@ -6,11 +6,11 @@
 <h2>Journal</h2>
 
 
-<p>@this.Model.FirstOrDefault().Классы.Номер_класса</p>
+<p>@this.Model.номер_класса</p>
 
-@foreach(var item in this.Model)
+@foreach(var item in this.Model.Предметы)
 {
-    @Html.ActionLink(item.Фамилия+item.Имя, "Journal2",new {id = item.Классы.ID_класса,studen = item.ID_ученика})
+    @Html.ActionLink(item.Название_предмета, "Journal2",new {id = Model.ID_класса,predm = item.ID_предмета})
     <p></p>
 }
 

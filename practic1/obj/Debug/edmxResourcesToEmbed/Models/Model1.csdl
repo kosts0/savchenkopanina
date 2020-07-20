@@ -39,15 +39,12 @@
       <PropertyRef Name="Дата" />
       <PropertyRef Name="ID_ученика" />
       <PropertyRef Name="id_предмета" />
-      <PropertyRef Name="ID_учителя" />
     </Key>
     <Property Name="Оценка" Type="Int32" Nullable="false" />
     <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="ID_ученика" Type="Guid" Nullable="false" />
     <Property Name="id_предмета" Type="Guid" Nullable="false" />
-    <Property Name="ID_учителя" Type="Guid" Nullable="false" />
     <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
-    <NavigationProperty Name="Учителя" Relationship="Self.Кто_поставил_оценку" FromRole="Оценки" ToRole="Учителя" />
     <NavigationProperty Name="Ученики" Relationship="Self.Оценки_учеников" FromRole="Оценки" ToRole="Ученики" />
     <NavigationProperty Name="Предметы" Relationship="Self.По_какому_предмету_оценка" FromRole="Оценки" ToRole="Предметы" />
   </EntityType>
@@ -124,7 +121,6 @@
     <Property Name="Номер_телефона" Type="Int64" />
     <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Классы" Relationship="Self.Классное_руководство" FromRole="Учителя" ToRole="Классы" />
-    <NavigationProperty Name="Оценки" Relationship="Self.Кто_поставил_оценку" FromRole="Учителя" ToRole="Оценки" />
     <NavigationProperty Name="Пользователи" Relationship="Self.пользователь_учитель" FromRole="Учителя" ToRole="Пользователи" />
   </EntityType>
   <Association Name="урок_в_расписании_по_времени">
@@ -172,18 +168,6 @@
       </Principal>
       <Dependent Role="Ученики">
         <PropertyRef Name="ID_класса" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Кто_поставил_оценку">
-    <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
-    <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Учителя">
-        <PropertyRef Name="ID_учителя" />
-      </Principal>
-      <Dependent Role="Оценки">
-        <PropertyRef Name="ID_учителя" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -286,10 +270,6 @@
       <End Role="Классы" EntitySet="Классы" />
       <End Role="Ученики" EntitySet="Ученики" />
     </AssociationSet>
-    <AssociationSet Name="Кто_поставил_оценку" Association="Self.Кто_поставил_оценку">
-      <End Role="Учителя" EntitySet="Учителя" />
-      <End Role="Оценки" EntitySet="Оценки" />
-    </AssociationSet>
     <AssociationSet Name="Оценки_учеников" Association="Self.Оценки_учеников">
       <End Role="Ученики" EntitySet="Ученики" />
       <End Role="Оценки" EntitySet="Оценки" />
@@ -314,5 +294,17 @@
       <End Role="Родители" EntitySet="Родители" />
       <End Role="Ученики" EntitySet="Ученики" />
     </AssociationSet>
+    <EntitySet Name="Четверти" EntityType="ps2Model.Четверти" />
   </EntityContainer>
+  <EntityType Name="Четверти">
+    <Key>
+      <PropertyRef Name="Начало_учебного_года" />
+      <PropertyRef Name="Номер_четверти" />
+    </Key>
+    <Property Name="Начало_учебного_года" Type="Int32" Nullable="false" />
+    <Property Name="Конец_учебного_года" Type="Int32" Nullable="false" />
+    <Property Name="Номер_четверти" Type="Int32" Nullable="false" />
+    <Property Name="Дата_начала_четверти" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Дата_окончания_четверти" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
 </Schema>

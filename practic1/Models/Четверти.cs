@@ -12,15 +12,12 @@ namespace practic1.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Оценки
+    public partial class Четверти
     {
-        public int Оценка { get; set; }
-        public System.DateTime Дата { get; set; }
-        public System.Guid ID_ученика { get; set; }
-        public System.Guid id_предмета { get; set; }
-        public string Комментарий { get; set; }
-    
-        public virtual Ученики Ученики { get; set; }
-        public virtual Предметы Предметы { get; set; }
+        public int Начало_учебного_года { get; set; }
+        public int Конец_учебного_года { get; set; }
+        public int Номер_четверти { get; set; }
+        public System.DateTime Дата_начала_четверти { get; set; }
+        public System.DateTime Дата_окончания_четверти { get; set; }
     }
 }

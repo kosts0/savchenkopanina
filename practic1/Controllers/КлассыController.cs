@@ -15,14 +15,25 @@ namespace practic1.Controllers
         private ps2Entities db = new ps2Entities();
         public ActionResult Journal(Guid id) 
         {
-            var ученики = db.Ученики.Where(p => p.ID_класса == id);
+            var расп = db.Расписание.Where(p => p.ID_класса == id);
+            Предметыукласса предметы = new Предметыукласса();
+            предметы.ID_класса = id;
+            предметы.номер_класса = db.Классы.Where(p => p.ID_класса == id).FirstOrDefault().Номер_класса;
+            foreach(var item in расп)
+            {
+                var x = предметы.Предметы.Where(p => p.ID_предмета == item.ID_предмета).FirstOrDefault();
+                if (x == null)
+                {
+                    предметы.Предметы.Add(item.Предметы);
+                }
+            }
             
-            return View(ученики.ToList());
+            return View(предметы);
         }
 
-        public ActionResult Journal2(Guid id, Guid studen)
+        public ActionResult Journal2(Guid id, Guid predm)
         {
-            return RedirectToAction("Index2", "Расписание", new { clas = id,x = 0,student = studen });
+            return RedirectToAction("Index2", "Расписание", new { clas = id,x = 0,predmet = predm });
         }
 
         public ActionResult Clases(Guid id,DayOfWeek day,int y)

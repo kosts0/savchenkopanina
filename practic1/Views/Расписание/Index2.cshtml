@@ -3,21 +3,77 @@
     ViewBag.Title = "Index2";
 }
 
-<h2>Index2</h2>
+
+
+@Html.ActionLink("Предыдущая неделя", "Index2", new { clas = Model.ID_класса, x = Model.x - 1, predmet = Model.предмет })
+@Html.ActionLink("Следующая неделя", "Index2", new { clas = Model.ID_класса, x = Model.x + 1, predmet = Model.предмет })
+
+
+<table class="table">
+    <tr>
+        <th></th>
+        @foreach (var item in Model.Days)
+        {
+            <th>@item.Day. @item.Month @item.Year</th>
+        }
+    </tr>
+
+    @foreach (var item in Model.Ученики)
+    {
+        <tr>
+
+            <td>@item.Фамилия @item.Имя</td>
+
+            @foreach (var d in Model.Days)
+            {
+                <td>
+                    @foreach (var o in Model.Оценки)
+                    {
+
+                        if (o.Дата.Year == d.Year && o.Дата.Month == d.Month && o.Дата.Day == d.Day && o.Ученики.ID_ученика == item.ID_ученика)
+                        {
+                            @o.Оценка
+                        }
+
+                    }
+                    @Html.ActionLink("+", "In_mark", new { clas = Model.ID_класса, person = item.ID_ученика, day = d, predmet = Model.предмет, x = Model.x })
+                </td>
+
+            }
+        </tr>
+    }
+</table>
 
 
 
+
+
+<p>---------</p>
+
+
+
+<p>@Model.название_предмета</p>
 @foreach (var item in Model.Days)
 {
-    <p>@item.Date</p>
+    <p>@item.Day. @item.Month @item.Year</p>
 }
-
 
 @foreach (var item in Model.расписание_недели)
 {
-    <p>@item.День_недели</p>
-    foreach(var item2 in item.Предметы)
+    foreach (var item2 in item.Предметы)
     {
-    <p>@item2.Номер_урока @item2.Название_предмета</p>
+        <p>@item2.Название_предмета</p>
     }
+}
+
+
+@foreach (var item in this.Model.Ученики)
+{
+    <p>@item.Имя @item.Фамилия</p>
+}
+
+
+@foreach (var item in this.Model.Оценки)
+{
+    <p>@item.Оценка @item.Дата</p>
 }

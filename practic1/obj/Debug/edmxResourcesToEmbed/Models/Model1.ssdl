@@ -35,13 +35,11 @@
       <PropertyRef Name="Дата" />
       <PropertyRef Name="ID ученика" />
       <PropertyRef Name="id предмета" />
-      <PropertyRef Name="ID учителя" />
     </Key>
     <Property Name="Оценка" Type="int" Nullable="false" />
     <Property Name="Дата" Type="date" Nullable="false" />
     <Property Name="ID ученика" Type="uniqueidentifier" Nullable="false" />
     <Property Name="id предмета" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ID учителя" Type="uniqueidentifier" Nullable="false" />
     <Property Name="Комментарий" Type="char" MaxLength="150" />
   </EntityType>
   <EntityType Name="Пользователи">
@@ -105,6 +103,17 @@
     <Property Name="Номер телефона" Type="bigint" />
     <Property Name="Логин" Type="nvarchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="Четверти">
+    <Key>
+      <PropertyRef Name="Начало учебного года" />
+      <PropertyRef Name="Номер четверти" />
+    </Key>
+    <Property Name="Начало учебного года" Type="int" Nullable="false" />
+    <Property Name="Конец учебного года" Type="int" Nullable="false" />
+    <Property Name="Номер четверти" Type="int" Nullable="false" />
+    <Property Name="Дата начала четверти" Type="date" Nullable="false" />
+    <Property Name="Дата окончания четверти" Type="date" Nullable="false" />
+  </EntityType>
   <Association Name="Классное руководство">
     <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
     <End Role="Классы" Type="Self.Классы" Multiplicity="*" />
@@ -114,18 +123,6 @@
       </Principal>
       <Dependent Role="Классы">
         <PropertyRef Name="ID классного руководителя" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="Кто поставил оценку">
-    <End Role="Учителя" Type="Self.Учителя" Multiplicity="1" />
-    <End Role="Оценки" Type="Self.Оценки" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Учителя">
-        <PropertyRef Name="ID учителя" />
-      </Principal>
-      <Dependent Role="Оценки">
-        <PropertyRef Name="ID учителя" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -248,13 +245,10 @@
     <EntitySet Name="Родители" EntityType="Self.Родители" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ученики" EntityType="Self.Ученики" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Учителя" EntityType="Self.Учителя" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Четверти" EntityType="Self.Четверти" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="Классное руководство" Association="Self.Классное руководство">
       <End Role="Учителя" EntitySet="Учителя" />
       <End Role="Классы" EntitySet="Классы" />
-    </AssociationSet>
-    <AssociationSet Name="Кто поставил оценку" Association="Self.Кто поставил оценку">
-      <End Role="Учителя" EntitySet="Учителя" />
-      <End Role="Оценки" EntitySet="Оценки" />
     </AssociationSet>
     <AssociationSet Name="Оценки учеников" Association="Self.Оценки учеников">
       <End Role="Ученики" EntitySet="Ученики" />

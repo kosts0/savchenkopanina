@@ -40,7 +40,6 @@
           <ScalarProperty Name="Дата" ColumnName="Дата" />
           <ScalarProperty Name="ID_ученика" ColumnName="ID ученика" />
           <ScalarProperty Name="id_предмета" ColumnName="id предмета" />
-          <ScalarProperty Name="ID_учителя" ColumnName="ID учителя" />
           <ScalarProperty Name="Комментарий" ColumnName="Комментарий" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -107,6 +106,17 @@
           <ScalarProperty Name="Отчество" ColumnName="Отчество" />
           <ScalarProperty Name="Номер_телефона" ColumnName="Номер телефона" />
           <ScalarProperty Name="Логин" ColumnName="Логин" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Четверти">
+      <EntityTypeMapping TypeName="ps2Model.Четверти">
+        <MappingFragment StoreEntitySet="Четверти">
+          <ScalarProperty Name="Дата_окончания_четверти" ColumnName="Дата окончания четверти" />
+          <ScalarProperty Name="Дата_начала_четверти" ColumnName="Дата начала четверти" />
+          <ScalarProperty Name="Номер_четверти" ColumnName="Номер четверти" />
+          <ScalarProperty Name="Конец_учебного_года" ColumnName="Конец учебного года" />
+          <ScalarProperty Name="Начало_учебного_года" ColumnName="Начало учебного года" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

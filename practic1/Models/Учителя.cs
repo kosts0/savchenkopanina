@@ -18,7 +18,6 @@ namespace practic1.Models
         public Учителя()
         {
             this.Классы = new HashSet<Классы>();
-            this.Оценки = new HashSet<Оценки>();
         }
     
         public System.Guid ID_учителя { get; set; }
@@ -30,8 +29,6 @@ namespace practic1.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Классы> Классы { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Оценки> Оценки { get; set; }
         public virtual Пользователи Пользователи { get; set; }
     }
 }

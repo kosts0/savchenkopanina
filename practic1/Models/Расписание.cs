@@ -22,6 +22,5 @@ namespace practic1.Models
         public virtual Время_уроков Время_уроков { get; set; }
         public virtual Классы Классы { get; set; }
         public virtual Предметы Предметы { get; set; }
-        public virtual int x { get; set; }
     }
 }

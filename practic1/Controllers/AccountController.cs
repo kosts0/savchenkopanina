@@ -38,6 +38,7 @@ namespace practic1.Controllers
                         FormsAuthentication.SetAuthCookie(model.Name, true);
                         if(user.Роль == "Учитель")
                         {
+
                             return RedirectToAction("Index", "Классы");
                         }
                         else if (user.Роль == "Родитель")

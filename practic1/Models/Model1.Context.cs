@@ -35,5 +35,6 @@ namespace practic1.Models
         public virtual DbSet<Родители> Родители { get; set; }
         public virtual DbSet<Ученики> Ученики { get; set; }
         public virtual DbSet<Учителя> Учителя { get; set; }
+        public virtual DbSet<Четверти> Четверти { get; set; }
     }
 }

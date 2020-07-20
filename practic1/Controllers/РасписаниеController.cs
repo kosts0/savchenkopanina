@@ -15,81 +15,99 @@ namespace practic1.Controllers
         private ps2Entities db = new ps2Entities();
 
         // GET: Расписание
-        public Chesk Index(Guid clas,string this_day,int? x)
+
+        public bool Check(Guid clas,Guid predmet, string day)
+        {
+            var расписание = db.Расписание.Where(p => p.ID_предмета == predmet).Where(p => p.Классы.ID_класса == clas).Where(p => p.День_недели == day).ToList();
+            if(расписание == null || расписание.Count == 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        public ActionResult Index(Guid clas,string this_day,int? x)
         {
             Chesk расписаниеModel = new Chesk();
             var расписание = db.Расписание.Include(р => р.Время_уроков).Include(р => р.Классы).Include(р => р.Предметы).Where(p => p.ID_класса == clas).Where(p => p.День_недели == this_day);
             bool t = false;
-            List<Предметы> предметы = new List<Предметы>();
             расписаниеModel.ID_класса = clas;
             расписаниеModel.День_недели = this_day;
             расписаниеModel.x = x;
             расписаниеModel.Номер_класса = db.Классы.Where(p=> p.ID_класса == clas).FirstOrDefault().Номер_класса;
             foreach (var item in расписание)
             {
-                Предметврасписании предметitem = new Предметврасписании();
-                предметitem.Название_предмета = item.Предметы.Название_предмета;
-                предметitem.Номер_урока = item.Номер_урока;
+                //Предметврасписании предметitem = new Предметврасписании();
+                //предметitem.Название_предмета = item.Предметы.Название_предмета;
+                //предметitem.Номер_урока = item.Номер_урока;
                 //предметitem.Начало_занятия = item.Время_уроков.Конец_занятия;
                 //предметitem.Конец_занятия = item.Время_уроков.Конец_занятия;
                 t = true;
-                расписаниеModel.Предметы.Add(предметitem);
+                расписаниеModel.Предметы.Add(item.Предметы);
             }
-            if (t == false)
-            {
+            //if (t == false)
+            //{
                 
-                for (int i = 1; i <= 4; i++)
-                {
-                    Предметврасписании предметitem = new Предметврасписании();
-                    предметitem.Номер_урока = i;
-                    предметitem.Название_предмета = "Нет занятия";
-                    //предметitem.Начало_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Начало_занятия;
-                    //предметitem.Конец_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Конец_занятия;
+            //    for (int i = 1; i <= 4; i++)
+            //    {
+            //        Предметврасписании предметitem = new Предметврасписании();
+            //        предметitem.Номер_урока = i;
+            //        предметitem.Название_предмета = "Нет занятия";
+            //        //предметitem.Начало_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Начало_занятия;
+            //        //предметitem.Конец_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Конец_занятия;
                    
-                    расписаниеModel.Предметы.Add(предметitem);
-                }
-            }
+            //        расписаниеModel.Предметы.Add(предметitem);
+            //    }
+            //}
             
 
-            return расписаниеModel;
+            return View();
         }
 
 
-        public ActionResult Index2(Guid clas,int x, Guid student)
+        public ActionResult Index2(Guid clas,int x, Guid predmet)
         {
             Неделя_оценкиcs week = new Неделя_оценкиcs();
-            System.DateTime date = DateTime.Now;
+            System.DateTime date = DateTime.Now.AddDays(x*7);
             int k = 0;
             while(date.DayOfWeek.ToString() != "Monday")
             {
-                date = DateTime.Now.AddDays(-1*k);
                 k++;
+                date = DateTime.Now.AddDays(-1*k + x*7);
 
             }
 
             DateTime l = date;
             while(date.DayOfWeek.ToString() != "Sunday")
             {
-                Chesk chesk = Index(clas, date.DayOfWeek.ToString(),0);
-                week.Days.Add(date);
-                week.расписание_недели.Add(chesk);
-                date = DateTime.Now.AddDays(-1 * k);
+                if (Check(clas, predmet, date.DayOfWeek.ToString()) == true)
+                {
+                    week.Days.Add(date);
+                }
                 k--;
+                date = DateTime.Now.AddDays(-1 * k + x*7);
             }
+            week.название_предмета = db.Предметы.Where(p => p.ID_предмета == predmet).FirstOrDefault().Название_предмета;
             DateTime r = date;
             week.ID_класса = clas;
             week.номер_класса = db.Классы.Where(p => p.ID_класса == clas).FirstOrDefault().Номер_класса;
-            var оценки = db.Оценки.Where(p => p.ID_ученика == student);
+            week.предмет = predmet;
+            var оценки = db.Оценки.Where(p => p.id_предмета == predmet).Where(p => p.Ученики.ID_класса == clas);
+            week.Ученики = db.Ученики.Where(p => p.ID_класса == clas).ToList();
             foreach(var item in оценки)
             {
-                if(item.Дата >=l && item.Дата <= r)
+                if(item.Дата.Day >=l.Day && item.Дата.Month >= l.Month && item.Дата.Year >= l.Year && item.Дата.Year <= r.Year && item.Дата.Month <= r.Month && item.Дата.Day <= r.Day)
                 {
                     week.Оценки.Add(item);
                 }
             }
+            week.x = x;
             return View(week);
         }
-        
+
+        public ActionResult In_mark(Guid clas, Guid person, DateTime day, Guid predmet, int x)
+        {
+            return RedirectToAction("Create", "Оценки", new { класс = clas, ученик = person, день = day, предмет = predmet, back = x });
+        }
         // GET: Расписание/Details/5
         public ActionResult Details(string id)
         {
@@ -196,6 +214,9 @@ namespace practic1.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
 
         protected override void Dispose(bool disposing)
         {
