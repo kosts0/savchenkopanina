@@ -13,12 +13,12 @@ namespace practic1.Models
     {
         public Chesk()
         {
-            this.Предметы = new List<Предметы>();
+            this.Предметы = new List<Расписание>();
         }
         public string День_недели { get; set; }
         public System.Guid ID_класса { get; set; }
         public string Номер_класса { get; set; }
-        public virtual ICollection<Предметы> Предметы { get; set; }
-        public int? x;
+        public virtual ICollection<Расписание> Предметы { get; set; }
+
     }
 }

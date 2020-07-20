@@ -44,7 +44,7 @@
     <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="ID_ученика" Type="Guid" Nullable="false" />
     <Property Name="id_предмета" Type="Guid" Nullable="false" />
-    <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="true" Unicode="false" />
+    <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Ученики" Relationship="Self.Оценки_учеников" FromRole="Оценки" ToRole="Ученики" />
     <NavigationProperty Name="Предметы" Relationship="Self.По_какому_предмету_оценка" FromRole="Оценки" ToRole="Предметы" />
   </EntityType>

@@ -23,44 +23,36 @@ namespace practic1.Controllers
             {
                 return false;
             }
+
             return true;
         }
-        public ActionResult Index(Guid clas,string this_day,int? x)
+        public ActionResult Index(Guid clas,string this_day,int x)
         {
-            Chesk расписаниеModel = new Chesk();
-            var расписание = db.Расписание.Include(р => р.Время_уроков).Include(р => р.Классы).Include(р => р.Предметы).Where(p => p.ID_класса == clas).Where(p => p.День_недели == this_day);
-            bool t = false;
-            расписаниеModel.ID_класса = clas;
-            расписаниеModel.День_недели = this_day;
-            расписаниеModel.x = x;
-            расписаниеModel.Номер_класса = db.Классы.Where(p=> p.ID_класса == clas).FirstOrDefault().Номер_класса;
-            foreach (var item in расписание)
+            List<Chesk> неделя = new List<Chesk>();
+            System.DateTime date = DateTime.Now;
+            int k = 0;
+            while (date.DayOfWeek.ToString() != "Monday")
             {
-                //Предметврасписании предметitem = new Предметврасписании();
-                //предметitem.Название_предмета = item.Предметы.Название_предмета;
-                //предметitem.Номер_урока = item.Номер_урока;
-                //предметitem.Начало_занятия = item.Время_уроков.Конец_занятия;
-                //предметitem.Конец_занятия = item.Время_уроков.Конец_занятия;
-                t = true;
-                расписаниеModel.Предметы.Add(item.Предметы);
-            }
-            //if (t == false)
-            //{
-                
-            //    for (int i = 1; i <= 4; i++)
-            //    {
-            //        Предметврасписании предметitem = new Предметврасписании();
-            //        предметitem.Номер_урока = i;
-            //        предметitem.Название_предмета = "Нет занятия";
-            //        //предметitem.Начало_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Начало_занятия;
-            //        //предметitem.Конец_занятия = db.Время_уроков.Where(p => p.Номер_урока == i).FirstOrDefault().Конец_занятия;
-                   
-            //        расписаниеModel.Предметы.Add(предметitem);
-            //    }
-            //}
-            
+                k++;
+                date = DateTime.Now.AddDays(-1 * k + x * 7);
 
-            return View();
+            }
+
+            string numb = db.Классы.Where(p => p.ID_класса == clas).FirstOrDefault().Номер_класса;
+            while (date.DayOfWeek.ToString() != "Sunday")
+            {
+                Chesk dat = new Chesk();
+                dat.День_недели = date.DayOfWeek.ToString();
+                dat.ID_класса = clas;
+                dat.Номер_класса = numb;
+                var предметы = db.Расписание.Include(p => p.Предметы).Include(p => p.Время_уроков).Where(p => p.ID_класса == clas).Where(p => p.День_недели == date.DayOfWeek.ToString()).ToList();
+                dat.Предметы = предметы;
+                неделя.Add(dat);
+                k--;
+                date = DateTime.Now.AddDays(-1 * k);
+            }
+            ViewBag.время = db.Время_уроков;
+            return View(неделя);
         }
 
 

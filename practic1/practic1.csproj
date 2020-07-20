@@ -165,6 +165,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Неделя_оценкиcs.cs" />
+    <Compile Include="Models\Неделя_предметы.cs" />
     <Compile Include="Models\Оценки.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

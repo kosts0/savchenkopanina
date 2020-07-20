@@ -14,7 +14,7 @@
         <th></th>
         @foreach (var item in Model.Days)
         {
-            <th>@item.Day. @item.Month @item.Year</th>
+            <td>@item.Day. @item.Month @item.Year</td>
         }
     </tr>
 
@@ -62,7 +62,7 @@
 {
     foreach (var item2 in item.Предметы)
     {
-        <p>@item2.Название_предмета</p>
+        @*<p>@item2.Название_предмета</p>*@
     }
 }
 

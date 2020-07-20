@@ -40,7 +40,7 @@
     <Property Name="Дата" Type="date" Nullable="false" />
     <Property Name="ID ученика" Type="uniqueidentifier" Nullable="false" />
     <Property Name="id предмета" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="Комментарий" Type="char" MaxLength="150" />
+    <Property Name="Комментарий" Type="nvarchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="Пользователи">
     <Key>
