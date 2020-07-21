@@ -4,7 +4,7 @@
 }
 
 <table class="table">
-    @foreach(var item in Model)
+    @foreach (var item in Model)
     {
         <tr>
             <td>@item.day_of_week @item.day.ToShortDateString()</td>
@@ -25,7 +25,11 @@
                                 <td>
                                     @foreach (var item3 in item.Оценки.Where(p => p.Дата.ToLongDateString() == item.day.ToLongDateString()))
                                     {
-                                        <nobr>@item3.Оценка | </nobr>
+                                        <div id="modDialog" class="modal fade">
+                                            <div id="dialogContent" class="modal-dialog">
+                                            </div>
+                                        </div>
+                                        <nobr>@Html.ActionLink(item3.Оценка.ToString(), "Comment", new { comment = item3.Комментарий }, new { @class = "compItem" })</nobr>
                                     }
                                 </td>
                             }
@@ -39,17 +43,35 @@
 </table>
 
 
-@foreach(var item in Model)
+@foreach (var item in Model)
 {
     <p>@item.day</p>
     <p>@item.day_of_week</p>
-    foreach(var item2 in item.Оценки)
-    { 
+    foreach (var item2 in item.Оценки)
+    {
         <p>@item2.Оценка  @item2.Предметы.Название_предмета    @item2.Дата</p>
     }
 
-    foreach(var item2 in item.Расписание)
+    foreach (var item2 in item.Расписание)
     {
         <p>@item2.Предметы.Название_предмета</p>
     }
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        $(function () {
+            $.ajaxSetup({ cache: false });
+           $(".compItem").click(function (e) {
+
+                e.preventDefault();
+                $.get(this.href, function (data) {
+                    $('#dialogContent').html(data);
+                    $('#modDialog').modal('show');
+                });
+            });
+        })
+    </script>
 }

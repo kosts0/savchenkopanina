@@ -52,6 +52,12 @@ namespace practic1.Controllers
             ViewBag.время = db.Время_уроков;
             return View(week);
         }
+
+        public ActionResult Comment(string comment)
+        {
+            ViewBag.s = comment;
+            return View();
+        }
         // GET: Ученики/Details/5
         public ActionResult Details(Guid? id)
         {

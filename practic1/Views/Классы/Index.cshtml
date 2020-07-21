@@ -10,8 +10,11 @@
     <button class="knopka">Выйти</button>
 }
 
-<h1>@Model.FirstOrDefault().Учителя.Фамилия @Model.FirstOrDefault().Учителя.Имя @Model.FirstOrDefault().Учителя.Отчество</h1>
-<h2>Классный руководитель @Model.FirstOrDefault().Номер_класса</h2>
+
+        <div class="oval">
+            <h3 class="center-block">@Model.FirstOrDefault().Учителя.Фамилия @Model.FirstOrDefault().Учителя.Имя @Model.FirstOrDefault().Учителя.Отчество <br />Классный руководитель @Model.FirstOrDefault().Номер_класса</h3>
+        </div>
+
 <table class="table">
     <tr>
         <th>
