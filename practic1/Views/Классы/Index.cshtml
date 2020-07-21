@@ -3,33 +3,38 @@
 
                       @Html.AntiForgeryToken()
                       <background1></background1>
-                      <div class="rect2"></div>
-                      
+                      <div class="rect2">
+
+
+
+                      </div>
                           <div class="rect">
 
                               <div class="container-buttons">
 
-                                  <button1>
+                                  <button class="button1">
                                       @Html.ActionLink("Журнал класса", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
                                       <img class="pict" src="~/Content/дневник.png">
-                                  </button1>
+                                  </button>
                       
-                                  <button1> 
-                                      @Html.ActionLink("Расписание уроков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
-                                   <img class="pict" src="~/Content/расписание.png"></button1>
+                                  <button class="button1">
+                                      @Html.ActionLink("Расписание уроков", "Clases",new { id = @Model.FirstOrDefault().ID_класса, day = DateTime.Now.DayOfWeek, y=0})
+                                      <img class="pict" src="~/Content/расписание.png"></button>
 
 
 
-                                  <button1>
-                                  @Html.ActionLink("Расписание звонков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
-                                  <img class="pict" src="~/Content/Колокол.png"></button1>
+                                  <button class="button1">
+                                      @Html.ActionLink("Расписание звонков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                      <img class="pict" src="~/Content/Колокол.png">
+                                      </button>
 
 
-                                  <button1> 
-                                  @Html.ActionLink("Мои ученики", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
-                                  <img class="pict" src="~/Content/дети.png"></button1>
+                                  <button class="button1">
+                                      @Html.ActionLink("Мои ученики", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                      <img class="pict" src="~/Content/дети.png">
+                                      </button>
 
-                              </div>
+</div>
                           </div>
                           @section Scripts {
                           @Scripts.Render("~/bundles/jqueryval")

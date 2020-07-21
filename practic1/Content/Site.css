@@ -216,7 +216,7 @@ h2 {
     display: flex;
     justify-content: space-around;
 }
-button1 {
+.button1 {
     width: 256px;
     height: 256px;
     background: #88C37F;
@@ -227,17 +227,16 @@ button1 {
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     color: white;
-    line-height:100px;
+    line-height:50px;
 }
 
 .pict {
     position: relative;
     width: 130px;
     height: 130px;
-    
 }
 .rect {
     position: absolute;
