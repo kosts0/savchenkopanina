@@ -5,7 +5,6 @@
     font-family: 'Times New Roman';
     padding-left: 40px;
 }
-
 background1 {
     background-image: url("../Content/фасад.jpg");
     position: absolute;
@@ -14,7 +13,6 @@ background1 {
     left: 0px;
     top: 0px;
 }
-
 background2 {
     background-image: url("../Content/Школа.jpg");
     position: absolute;
@@ -23,18 +21,15 @@ background2 {
     left: 0px;
     top: 969px;
 }
-
 .form-horizontal1 {
     position: relative;
     left: 50px;
     top: 60px;
 }
-
 .form-control {
     width: 391px;
     height: 66px;
 }
-
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -45,7 +40,6 @@ background2 {
 .dl-horizontal dt {
     white-space: normal;
 }
-
 header {
     position: absolute;
     width: 1600px;
@@ -54,16 +48,6 @@ header {
     top: 0px;
     background-color: rgba(136, 195, 127, 0.6);
 }
-
-footer {
-    position: absolute;
-    width: 1600px;
-    height: 180px;
-    left: 0px;
-    top: 2186px;
-    background-color: rgba(136, 195, 127, 0.6);
-}
-
 betweenrect {
     position: absolute;
     width: 1600px;
@@ -73,7 +57,6 @@ betweenrect {
     background: #88C37F;
     opacity: 0.6;
 }
-
 betweentext {
     position: absolute;
     width: 1077px;
@@ -87,7 +70,7 @@ betweentext {
     line-height: 28px;
     text-align: center;
     color: #FFFFFF;
-    mix-blend-mode: normal;
+ 
 }
 /* Set width on the form input elements since they're 100% wide by default */
 input,
@@ -95,7 +78,6 @@ select,
 textarea {
     max-width: 280px;
 }
-
 h1 {
     position: absolute;
     width: 1482px;
@@ -110,7 +92,6 @@ h1 {
     text-align: center;
     color: #FFFFFF;
 }
-
 h2 {
     position: absolute;
     width: 733px;
@@ -126,7 +107,6 @@ h2 {
     color: #88C37F;
     text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
 }
-
 .f1 {
     position: absolute;
     width: 405px;
@@ -136,7 +116,6 @@ h2 {
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
-
 .f2 {
     position: absolute;
     width: 405px;
@@ -146,7 +125,6 @@ h2 {
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
-
 .f3 {
     position: absolute;
     width: 405px;
@@ -156,7 +134,6 @@ h2 {
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
-
 .f4 {
     position: absolute;
     width: 402px;
@@ -166,7 +143,6 @@ h2 {
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
-
 .textbox1 {
     position: relative;
     left: 45px;
@@ -181,7 +157,6 @@ h2 {
     text-align: center;
     color: #FFFFFF;
 }
-
 .gentext {
     position: relative;
     font-family: Roboto;
@@ -192,7 +167,6 @@ h2 {
     text-align: left;
     color: #FFFFFF;
 }
-
 .gentext2 {
     position: absolute;
     width: 1482px;
@@ -207,7 +181,6 @@ h2 {
     text-align: center;
     color: #FFFFFF;
 }
-
 .gentext3 {
     position: absolute;
     width: 1482px;
@@ -222,7 +195,6 @@ h2 {
     text-align: center;
     color: #88C37F;
 }
-
 .sotext {
     position: absolute;
     width: 733px;
@@ -236,6 +208,68 @@ h2 {
     line-height: 42px;
     text-align: center;
     color: #88C37F;
-    mix-blend-mode: normal;
     text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
 }
+.container-buttons {
+    position: relative;
+    top: 41px;
+    display: flex;
+    justify-content: space-around;
+}
+button1 {
+    width: 256px;
+    height: 256px;
+    background: #88C37F;
+    border: 10px solid #A2F9A0;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.6);
+    border-radius: 90px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    line-height:100px;
+}
+
+.pict {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    
+}
+.rect {
+    position: absolute;
+    width: 1600px;
+    height: 339px;
+    left: 0px;
+    top: 456px;
+    background-color: rgba(136, 195, 127, 0.7);
+}
+.rect2 {
+    position: absolute;
+    width: 692px;
+    height: 139px;
+    left: 447px;
+    top: 42px;
+    background-color: rgba(136, 195, 127, 0.7);
+    border-radius: 360px;
+}
+.rect3 {
+    position: absolute;
+    width: 1600px;
+    height: 100px;
+    left: 0px;
+    top: 983px;
+    background-color: rgba(136, 195, 127, 0.7);
+}
+.rect4 {
+    position: absolute;
+    width: 1600px;
+    height: 237px;
+    left: 0px;
+    top: 2186px;
+    background-color: rgba(136, 195, 127, 0.7);
+}
+

@@ -3,12 +3,12 @@
 <head>
     @Styles.Render("~/Content/Site.css")
 </head>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
 <background1></background1>
 <background2></background2>
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
 <header>
     <div class="gentext2">ЭЛЕКТРОННЫЙ ЖУРНАЛ ШКОЛЫ №77</div>
 </header>
@@ -23,7 +23,7 @@
 
 <div class="f4">
     <div class="form-horizontal1">
-        <hr />
+        
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
@@ -63,11 +63,7 @@
 </div>
 <div class="gentext3"> С помощью электронного журнала вы сможете отслеживать успеваемость вашего ребенка в реальном времени</div>
 
-<footer>
-    <div class="gentext">Адрес: 652470, Томская обл., г. Томск, ул. Ленина, 10</div>
-    <div class="gentext">Телефон/факс: +7 (38543) 6-58-20 — приёмная</div>
-    <div class="gentext">E-mail: school77@mail.ru</div>
-</footer>
+
     }
 
     @section Scripts {

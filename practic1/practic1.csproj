@@ -197,10 +197,14 @@
     <Compile Include="Providers\CustomRoleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\дети.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\дневник.png" />
+    <Content Include="Content\Колокол.png" />
+    <Content Include="Content\расписание.png" />
     <Content Include="Content\фасад.jpg" />
     <Content Include="Content\Школа.jpg" />
     <Content Include="favicon.ico" />

@@ -1,58 +1,40 @@
 ﻿@model IEnumerable<practic1.Models.Классы>
 
-@{
-    ViewBag.Title = "Index";
-}
 
-<h2>Index</h2>
+                      @Html.AntiForgeryToken()
+                      <background1></background1>
+                      <div class="rect2"></div>
+                      
+                          <div class="rect">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Номер_класса)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Год_начала_обучения)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Год_окончания_обучения)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Специализация_класса)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Учителя.Фамилия)
-        </th>
-        <th></th>
-    </tr>
+                              <div class="container-buttons">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Номер_класса)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Год_начала_обучения)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Год_окончания_обучения)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Специализация_класса)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Учителя.Фамилия)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_класса }) |
-            @*@Html.ActionLink("Расписание","Index", "Расписание",new {day = "Вторник",clas=item.ID_класса }) |*@
-            @Html.ActionLink("Расписание", "Clases",new { id = item.ID_класса, day = DateTime.Now.DayOfWeek, y=0})
-            @Html.ActionLink("Журнал", "Journal", new { id=item.ID_класса })
-        </td>
-    </tr>
-}
+                                  <button1>
+                                      @Html.ActionLink("Журнал класса", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                      <img class="pict" src="~/Content/дневник.png">
+                                  </button1>
+                      
+                                  <button1> 
+                                      @Html.ActionLink("Расписание уроков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                   <img class="pict" src="~/Content/расписание.png"></button1>
 
-</table>
+
+
+                                  <button1>
+                                  @Html.ActionLink("Расписание звонков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                  <img class="pict" src="~/Content/Колокол.png"></button1>
+
+
+                                  <button1> 
+                                  @Html.ActionLink("Мои ученики", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
+                                  <img class="pict" src="~/Content/дети.png"></button1>
+
+                              </div>
+                          </div>
+                          @section Scripts {
+                          @Scripts.Render("~/bundles/jqueryval")
+                          }
+
+
+
+                     
