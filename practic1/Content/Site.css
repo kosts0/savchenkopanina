@@ -34,7 +34,7 @@ background2 {
 .form-horizontal1 {
     position: relative;
     left: 50px;
-    top: 60px;
+    top: 100px;
 }
 .form-control {
     width: 391px;
@@ -88,7 +88,7 @@ select,
 textarea {
     max-width: 280px;
 }
-<<<<<<< HEAD
+
 h1 {
     position: absolute;
     width: 1482px;
@@ -118,17 +118,12 @@ h2 {
     color: #88C37F;
     text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
 }
-=======
-
-
-
->>>>>>> master
 .f1 {
     position: absolute;
     width: 405px;
     height: 405px;
     left: 52px;
-    top: 1499px;
+    top: 1133px;
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
@@ -137,7 +132,7 @@ h2 {
     width: 405px;
     height: 405px;
     left: 594px;
-    top: 1499px;
+    top: 1133px;
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
@@ -146,7 +141,7 @@ h2 {
     width: 405px;
     height: 405px;
     left: 1137px;
-    top: 1499px;
+    top: 1133px;
     background-color: rgba(136, 195, 127, 0.7);
     border-radius: 50%;
 }
@@ -188,12 +183,12 @@ h2 {
     width: 1482px;
     height: 90px;
     left: calc(50% - 1482px/2);
-    top: 43px;
+    top: 30px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 44px;
+    line-height: 40px;
     text-align: center;
     color: #FFFFFF;
 }
@@ -202,7 +197,7 @@ h2 {
     width: 1482px;
     height: 230px;
     left: 59px;
-    top: 1956px;
+    top: 1858px;
     font-family: Roboto;
     font-style: normal;
     font-weight: bold;
@@ -211,7 +206,12 @@ h2 {
     text-align: center;
     color: #88C37F;
 }
-.sotext {
+.form-horizontal1{
+    position:relative;
+
+}
+
+    .sotext {
     position: absolute;
     width: 733px;
     height: 82px;
@@ -226,11 +226,11 @@ h2 {
     color: #88C37F;
     text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
 }
-<<<<<<< HEAD
+
 .container-buttons {
     position: relative;
     top: 41px;
-    display: flex;
+    display:flex;
     justify-content: space-around;
 }
 .button1 {
@@ -247,7 +247,7 @@ h2 {
     font-size: 20px;
     text-align: center;
     color: white;
-    line-height:50px;
+    line-height: 50px;
 }
 
 .pict {
@@ -289,10 +289,13 @@ h2 {
     background-color: rgba(136, 195, 127, 0.7);
 }
 
-=======
 
 
 button.knopka {
+    left: 1439px;
+    top: 82px;
+    
+    position: absolute;
     font-weight: 700;
     color: white;
     text-decoration: none;
@@ -311,10 +314,7 @@ button.knopka {
         background: rgb(33,147,90);
         box-shadow: 0 3px rgb(33,147,90) inset;
     }
-/* при нажатии */
-<<<<<<< HEAD
->>>>>>> master
-=======
+
 
 .oval {
     margin-left: auto;
@@ -326,4 +326,4 @@ button.knopka {
     -webkit-border-radius: 100px / 50px;
     border-radius: 150px / 50px;
 }
->>>>>>> master
+

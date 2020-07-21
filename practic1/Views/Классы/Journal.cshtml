@@ -1,10 +1,10 @@
 ﻿@model practic1.Models.Предметыукласса
-@{ 
-    ViewBag.Title = "Journal";
-}
 
-<h2>Journal</h2>
 
+@using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+                      {
+<button class="knopka">Выйти</button>
+                      }
 
 <h1>@this.Model.номер_класса</h1>
 

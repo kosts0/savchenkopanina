@@ -1,13 +1,18 @@
 ﻿@model IEnumerable<practic1.Models.Классы>
 
 
-<<<<<<< HEAD
                       @Html.AntiForgeryToken()
                       <background1></background1>
+                      @using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+                      {
+ 
+                      <button class="knopka">Выйти</button>
+                      }
                       <div class="rect2">
-
-
-
+                          <div class="gentext2"
+                               >
+                              @Model.FirstOrDefault().Учителя.Фамилия @Model.FirstOrDefault().Учителя.Имя @Model.FirstOrDefault().Учителя.Отчество <br />Классный руководитель @Model.FirstOrDefault().Номер_класса
+                          </div>
                       </div>
                           <div class="rect">
 
@@ -20,21 +25,21 @@
                       
                                   <button class="button1">
                                       @Html.ActionLink("Расписание уроков", "Clases",new { id = @Model.FirstOrDefault().ID_класса, day = DateTime.Now.DayOfWeek, y=0})
-                                      <img class="pict" src="~/Content/расписание.png"></button>
+                                      <img class="pict" src="~/Content/расписание.png">
+                                  </button>
 
 
 
                                   <button class="button1">
                                       @Html.ActionLink("Расписание звонков", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
                                       <img class="pict" src="~/Content/Колокол.png">
-                                      </button>
+                                  </button>
 
 
                                   <button class="button1">
                                       @Html.ActionLink("Мои ученики", "Journal", new { id=@Model.FirstOrDefault().ID_класса})
                                       <img class="pict" src="~/Content/дети.png">
                                       </button>
-
 </div>
                           </div>
                           @section Scripts {
@@ -43,65 +48,5 @@
 
 
 
-                     
-=======
-@using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
-{
-    <input type="hidden"><br />
-    <button class="knopka">Выйти</button>
-}
 
 
-        <div class="oval">
-            <h3 class="center-block">@Model.FirstOrDefault().Учителя.Фамилия @Model.FirstOrDefault().Учителя.Имя @Model.FirstOrDefault().Учителя.Отчество <br />Классный руководитель @Model.FirstOrDefault().Номер_класса</h3>
-        </div>
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Номер_класса)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Год_начала_обучения)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Год_окончания_обучения)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Специализация_класса)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Учителя.Фамилия)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Номер_класса)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Год_начала_обучения)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Год_окончания_обучения)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Специализация_класса)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Учителя.Фамилия)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID_класса }) |
-                @*@Html.ActionLink("Расписание","Index", "Расписание",new {day = "Вторник",clas=item.ID_класса }) |*@
-                @Html.ActionLink("Расписание", "Clases", new { id = item.ID_класса, day = DateTime.Now.DayOfWeek, y = 0 })
-                @Html.ActionLink("Журнал", "Journal", new { id = item.ID_класса })
-            </td>
-        </tr>
-    }
-
-</table>
->>>>>>> master

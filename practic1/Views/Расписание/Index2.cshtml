@@ -1,10 +1,8 @@
 ﻿@model practic1.Models.Неделя_оценкиcs
-@{
-    ViewBag.Title = "Index2";
-}
-
-
-
+@using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+                      {
+<button class="knopka">Выйти</button>
+                      }
 @Html.ActionLink("Предыдущая неделя", "Index2", new { clas = Model.ID_класса, x = Model.x - 1, predmet = Model.предмет })
 @Html.ActionLink("Следующая неделя", "Index2", new { clas = Model.ID_класса, x = Model.x + 1, predmet = Model.предмет })
 

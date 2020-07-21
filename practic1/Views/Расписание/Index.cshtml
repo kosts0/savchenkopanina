@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<practic1.Models.Chesk>
 
-@{
-    ViewBag.Title = "Index";
-}
+                      @using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+                      {
+                      <button class="knopka">Выйти</button>
+                      }
 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 @*@Html.ActionLink("Предыдущий день", "Index", new { clas = Model.ID_класса, this_day = DateTimeOffset.Now.AddDays(Model.x - 1).DayOfWeek.ToString(), x = Model.x - 1 })
 @Html.ActionLink("Следующий день", "Index", new { clas = Model.ID_класса, this_day = DateTimeOffset.Now.AddDays(Model.x + 1).DayOfWeek.ToString(), x = Model.x + 1 })*@
 @*@if (ViewBag.day == "Monday")
