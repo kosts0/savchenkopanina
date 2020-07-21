@@ -21,6 +21,37 @@ namespace practic1.Controllers
             return View(ученики.ToList());
         }
 
+
+        public ActionResult Progress(System.Guid id, int x)
+        {
+            List < Неделя_предметы_оценки > week = new List<Неделя_предметы_оценки>();
+            int k = 0;
+            System.DateTime date = DateTime.Now;
+            while (date.DayOfWeek.ToString() != "Monday")
+            {
+                k++;
+                date = DateTime.Now.AddDays(-1 * k + x * 7);
+
+            }
+            Guid clas = db.Ученики.Where(p => p.ID_ученика == id).FirstOrDefault().ID_класса;
+            string numb = db.Классы.Where(p => p.ID_класса == clas).FirstOrDefault().Номер_класса;
+            while (date.DayOfWeek.ToString() != "Sunday")
+            {
+                Неделя_предметы_оценки one_day = new Неделя_предметы_оценки();
+                one_day.day_of_week = date.DayOfWeek.ToString();
+                one_day.day = date;
+                var расписаие = db.Расписание.Include(p => p.Время_уроков).Include(p => p.Предметы).Where(p => p.ID_класса == clas).Where(p => p.День_недели == date.DayOfWeek.ToString()).ToList();
+                var оценки = db.Оценки.Where(p => (p.Дата.Day == date.Day && p.Дата.Month == date.Month && p.Дата.Day == date.Day)).Where(p => p.ID_ученика == id).ToList();
+                
+                one_day.Оценки = оценки;
+                one_day.Расписание = расписаие;
+                week.Add(one_day);
+                k--;
+                date = DateTime.Now.AddDays(-1 * k);
+            }
+            ViewBag.время = db.Время_уроков;
+            return View(week);
+        }
         // GET: Ученики/Details/5
         public ActionResult Details(Guid? id)
         {

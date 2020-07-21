@@ -4,11 +4,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+{
+    <input type="hidden"><br />
+    <button class="knopka">Выйти</button>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h1>@Model.FirstOrDefault().Учителя.Фамилия @Model.FirstOrDefault().Учителя.Имя @Model.FirstOrDefault().Учителя.Отчество</h1>
+<h2>Классный руководитель @Model.FirstOrDefault().Номер_класса</h2>
 <table class="table">
     <tr>
         <th>
@@ -29,30 +32,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Номер_класса)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Год_начала_обучения)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Год_окончания_обучения)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Специализация_класса)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Учителя.Фамилия)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_класса }) |
-            @*@Html.ActionLink("Расписание","Index", "Расписание",new {day = "Вторник",clas=item.ID_класса }) |*@
-            @Html.ActionLink("Расписание", "Clases",new { id = item.ID_класса, day = DateTime.Now.DayOfWeek, y=0})
-            @Html.ActionLink("Журнал", "Journal", new { id=item.ID_класса })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Номер_класса)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Год_начала_обучения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Год_окончания_обучения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Специализация_класса)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Учителя.Фамилия)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID_класса }) |
+                @*@Html.ActionLink("Расписание","Index", "Расписание",new {day = "Вторник",clas=item.ID_класса }) |*@
+                @Html.ActionLink("Расписание", "Clases", new { id = item.ID_класса, day = DateTime.Now.DayOfWeek, y = 0 })
+                @Html.ActionLink("Журнал", "Journal", new { id = item.ID_класса })
+            </td>
+        </tr>
+    }
 
 </table>

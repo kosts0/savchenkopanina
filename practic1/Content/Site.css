@@ -96,36 +96,7 @@ textarea {
     max-width: 280px;
 }
 
-h1 {
-    position: absolute;
-    width: 1482px;
-    height: 90px;
-    left: calc(50% - 1482px/2);
-    top: 43px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 56px;
-    text-align: center;
-    color: #FFFFFF;
-}
 
-h2 {
-    position: absolute;
-    width: 733px;
-    height: 82px;
-    left: 686px;
-    top: 177px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 42px;
-    text-align: center;
-    color: #88C37F;
-    text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
-}
 
 .f1 {
     position: absolute;
@@ -239,3 +210,25 @@ h2 {
     mix-blend-mode: normal;
     text-shadow: 0px 4px 5px rgba(255, 255, 255, 0.6);
 }
+
+
+button.knopka {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: .8em 1em calc(.8em + 3px);
+    border-radius: 3px;
+    background: rgb(64,199,129);
+    box-shadow: 0 -3px rgb(53,167,110) inset;
+    transition: 0.2s;
+}
+
+    button.knopka:hover {
+        background: rgb(53, 167, 110);
+    }
+    /* при наведении курсора мышки */
+    button.knopka:active {
+        background: rgb(33,147,90);
+        box-shadow: 0 3px rgb(33,147,90) inset;
+    }
+/* при нажатии */

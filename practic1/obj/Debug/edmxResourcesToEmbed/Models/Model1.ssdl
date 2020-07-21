@@ -90,7 +90,7 @@
     <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
     <Property Name="Номер телефона" Type="bigint" />
     <Property Name="ID родителя" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="ID класса" Type="uniqueidentifier" />
+    <Property Name="ID класса" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="Учителя">
     <Key>
@@ -223,7 +223,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="ученики в классе">
-    <End Role="Классы" Type="Self.Классы" Multiplicity="0..1" />
+    <End Role="Классы" Type="Self.Классы" Multiplicity="1" />
     <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Классы">
