@@ -1,0 +1,55 @@
+﻿@model IEnumerable<practic1.Models.Неделя_предметы_оценки>
+@{
+    ViewBag.Title = "Progress";
+}
+
+<table class="table">
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.day_of_week @item.day.ToShortDateString()</td>
+            <td>
+                <table>
+
+                    @foreach (var item2 in ViewBag.время)
+                    {
+                        <tr>
+                            @if (item.Расписание.Where(p => p.Номер_урока == item2.Номер_урока).Count() == 0)
+                            {
+                                <td>@item2.Начало_занятия - @item2.Конец_занятия Нет занятия</td>
+                                <td></td>
+                            }
+                            else
+                            {
+                                <td>@item2.Начало_занятия - @item2.Конец_занятия @item.Расписание.Where(p => p.Номер_урока == item2.Номер_урока).FirstOrDefault().Предметы.Название_предмета</td>
+                                <td>
+                                    @foreach (var item3 in item.Оценки.Where(p => p.Дата.ToLongDateString() == item.day.ToLongDateString()))
+                                    {
+                                        <nobr>@item3.Оценка | </nobr>
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    }
+
+                </table>
+            </td>
+        </tr>
+    }
+</table>
+
+
+@foreach(var item in Model)
+{
+    <p>@item.day</p>
+    <p>@item.day_of_week</p>
+    foreach(var item2 in item.Оценки)
+    { 
+        <p>@item2.Оценка  @item2.Предметы.Название_предмета    @item2.Дата</p>
+    }
+
+    foreach(var item2 in item.Расписание)
+    {
+        <p>@item2.Предметы.Название_предмета</p>
+    }
+}

@@ -95,7 +95,7 @@
           <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
           <Property Name="Номер телефона" Type="bigint" />
           <Property Name="ID родителя" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ID класса" Type="uniqueidentifier" />
+          <Property Name="ID класса" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Учителя">
           <Key>
@@ -228,7 +228,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ученики в классе">
-          <End Role="Классы" Type="Self.Классы" Multiplicity="0..1" />
+          <End Role="Классы" Type="Self.Классы" Multiplicity="1" />
           <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Классы">
@@ -340,7 +340,7 @@
           <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="ID_ученика" Type="Guid" Nullable="false" />
           <Property Name="id_предмета" Type="Guid" Nullable="false" />
-          <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Комментарий" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ученики" Relationship="Self.Оценки_учеников" FromRole="Оценки" ToRole="Ученики" />
           <NavigationProperty Name="Предметы" Relationship="Self.По_какому_предмету_оценка" FromRole="Оценки" ToRole="Предметы" />
         </EntityType>
@@ -401,7 +401,7 @@
           <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Номер_телефона" Type="Int64" />
           <Property Name="ID_родителя" Type="Guid" Nullable="false" />
-          <Property Name="ID_класса" Type="Guid" />
+          <Property Name="ID_класса" Type="Guid" Nullable="false" />
           <NavigationProperty Name="Классы" Relationship="Self.ученики_в_классе" FromRole="Ученики" ToRole="Классы" />
           <NavigationProperty Name="Оценки" Relationship="Self.Оценки_учеников" FromRole="Ученики" ToRole="Оценки" />
           <NavigationProperty Name="Родители" Relationship="Self.родитель_ученик" FromRole="Ученики" ToRole="Родители" />
@@ -456,7 +456,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ученики_в_классе">
-          <End Role="Классы" Type="Self.Классы" Multiplicity="0..1" />
+          <End Role="Классы" Type="Self.Классы" Multiplicity="1" />
           <End Role="Ученики" Type="Self.Ученики" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Классы">

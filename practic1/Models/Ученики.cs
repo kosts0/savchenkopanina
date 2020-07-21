@@ -26,7 +26,7 @@ namespace practic1.Models
         public string Отчество { get; set; }
         public Nullable<long> Номер_телефона { get; set; }
         public System.Guid ID_родителя { get; set; }
-        public Nullable<System.Guid> ID_класса { get; set; }
+        public System.Guid ID_класса { get; set; }
     
         public virtual Классы Классы { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
