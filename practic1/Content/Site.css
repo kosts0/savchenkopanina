@@ -1,9 +1,19 @@
 ﻿body {
-    position: relative;
-    width: 1600px;
-    font-size: 13px;
-    font-family: 'Times New Roman';
-    padding-left: 40px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
 }
 background1 {
     background-image: url("../Content/фасад.jpg");
@@ -302,4 +312,18 @@ button.knopka {
         box-shadow: 0 3px rgb(33,147,90) inset;
     }
 /* при нажатии */
+<<<<<<< HEAD
+>>>>>>> master
+=======
+
+.oval {
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    height: 100px;
+    background-color: rgba(0, 250, 154, 0.5);
+    -moz-border-radius: 100px / 50px;
+    -webkit-border-radius: 100px / 50px;
+    border-radius: 150px / 50px;
+}
 >>>>>>> master

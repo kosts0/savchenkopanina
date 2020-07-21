@@ -274,6 +274,7 @@
     <Content Include="Views\Расписание\Index2.cshtml" />
     <Content Include="Views\Оценки\Create.cshtml" />
     <Content Include="Views\Ученики\Progress.cshtml" />
+    <Content Include="Views\Ученики\Comment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
