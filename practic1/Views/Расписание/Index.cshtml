@@ -68,17 +68,3 @@
     
 
 </table>
-<p>----------</p>
-@foreach(var item in ViewBag.время)
-{
-    <p>@item.Номер_урока</p>
-}
-
-@foreach(var item in this.Model)
-{
-    <p>@item.День_недели</p>
-    foreach(var item2 in item.Предметы)
-    {
-        <p>@item2.Предметы.Название_предмета @item2.Номер_урока @item2.Время_уроков.Начало_занятия @item2.Время_уроков.Конец_занятия</p>
-    }
-}

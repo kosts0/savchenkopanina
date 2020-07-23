@@ -50,28 +50,3 @@
 
 
 
-<p>@Model.название_предмета</p>
-@foreach (var item in Model.Days)
-{
-    <p>@item.Day. @item.Month @item.Year</p>
-}
-
-@foreach (var item in Model.расписание_недели)
-{
-    foreach (var item2 in item.Предметы)
-    {
-        @*<p>@item2.Название_предмета</p>*@
-    }
-}
-
-
-@foreach (var item in this.Model.Ученики)
-{
-    <p>@item.Имя @item.Фамилия</p>
-}
-
-
-@foreach (var item in this.Model.Оценки)
-{
-    <p>@item.Оценка @item.Дата</p>
-}

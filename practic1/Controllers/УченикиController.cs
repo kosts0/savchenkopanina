@@ -20,7 +20,10 @@ namespace practic1.Controllers
             var ученики = db.Ученики.Include(у => у.Классы).Include(у => у.Родители).Where(u => u.Родители.Логин == User.Identity.Name);
             return View(ученики.ToList());
         }
-
+        public ActionResult Rasp(Guid id, string x, int y)
+        {
+            return RedirectToAction("Index", "Расписание", new { clas = id, this_day = x, x = y });
+        }
 
         public ActionResult Progress(System.Guid id, int x)
         {
@@ -45,9 +48,11 @@ namespace practic1.Controllers
                 
                 one_day.Оценки = оценки;
                 one_day.Расписание = расписаие;
+                one_day.x = x;
+                one_day.id = id;
                 week.Add(one_day);
                 k--;
-                date = DateTime.Now.AddDays(-1 * k);
+                date = DateTime.Now.AddDays(-1 * k + x*7);
             }
             ViewBag.время = db.Время_уроков;
             return View(week);

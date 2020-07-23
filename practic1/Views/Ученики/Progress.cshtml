@@ -2,7 +2,12 @@
 @{
     ViewBag.Title = "Progress";
 }
-
+@using (Html.BeginForm("Logoff", "Account", FormMethod.Post))
+{
+    <button class="knopka">Выйти</button>
+}
+@Html.ActionLink("Предыдущая неделя", "Progress", new { id = Model.FirstOrDefault().id, x = Model.FirstOrDefault().x - 1 })
+@Html.ActionLink("Следующая неделя", "Progress", new { id = Model.FirstOrDefault().id, x = Model.FirstOrDefault().x + 1 })
 <table class="table">
     @foreach (var item in Model)
     {
@@ -23,7 +28,7 @@
                             {
                                 <td>@item2.Начало_занятия - @item2.Конец_занятия @item.Расписание.Where(p => p.Номер_урока == item2.Номер_урока).FirstOrDefault().Предметы.Название_предмета</td>
                                 <td>
-                                    @foreach (var item3 in item.Оценки.Where(p => p.Дата.ToLongDateString() == item.day.ToLongDateString()))
+                                    @foreach (var item3 in item.Оценки.Where(p => p.Дата.ToLongDateString() == item.day.ToLongDateString()).Where(p => p.id_предмета == item.Расписание.Where(u => u.Номер_урока == item2.Номер_урока).FirstOrDefault().ID_предмета))
                                     {
                                         <div id="modDialog" class="modal fade">
                                             <div id="dialogContent" class="modal-dialog">
@@ -64,7 +69,7 @@
 
         $(function () {
             $.ajaxSetup({ cache: false });
-           $(".compItem").click(function (e) {
+            $(".compItem").click(function (e) {
 
                 e.preventDefault();
                 $.get(this.href, function (data) {

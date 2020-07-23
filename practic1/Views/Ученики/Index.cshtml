@@ -4,12 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h4>@Model.FirstOrDefault().Родители.Фамилия @Model.FirstOrDefault().Родители.Имя @Model.FirstOrDefault().Родители.Отчество<br />
+Ваши дети</h4>
+
 <table class="table">
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Фамилия @item.Имя @item.Отчество
+            </td>
+            <td>@Html.ActionLink("Успеваемость", "Progress", new { id = item.ID_ученика, x = 0 })</td>
+            <td>
+                @Html.ActionLink("Расписание", "Rasp", new { id = item.ID_класса, x = "Monday",y = 0})
+            </td>
+        </tr>
+    }
+</table>
+@*<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Фамилия)
@@ -53,11 +66,9 @@
             @Html.DisplayFor(modelItem => item.Родители.Фамилия)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID_ученика }) |
             @Html.ActionLink("Успеваемость", "Progress", new { id=item.ID_ученика, x = 0}) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID_ученика })
         </td>
     </tr>
 }
 
-</table>
+</table>*@
